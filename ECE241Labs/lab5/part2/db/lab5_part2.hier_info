@@ -1,0 +1,180 @@
+|lab5_part2
+SW[0] => SW[0].IN1
+SW[1] => SW[1].IN1
+CLOCK_50 => CLOCK_50.IN1
+HEX0[0] <= counter:c0.h
+HEX0[1] <= counter:c0.h
+HEX0[2] <= counter:c0.h
+HEX0[3] <= counter:c0.h
+HEX0[4] <= counter:c0.h
+HEX0[5] <= counter:c0.h
+HEX0[6] <= counter:c0.h
+
+
+|lab5_part2|counter:c0
+choice[0] => choice[0].IN1
+choice[1] => choice[1].IN1
+clock => clock.IN3
+h[0] <= DisplayCounter:d0.h
+h[1] <= DisplayCounter:d0.h
+h[2] <= DisplayCounter:d0.h
+h[3] <= DisplayCounter:d0.h
+h[4] <= DisplayCounter:d0.h
+h[5] <= DisplayCounter:d0.h
+h[6] <= DisplayCounter:d0.h
+
+
+|lab5_part2|counter:c0|mux:m0
+choice[0] => Decoder0.IN1
+choice[0] => Q[23].DATAIN
+choice[0] => Q[17].DATAIN
+choice[0] => Q[15].DATAIN
+choice[1] => Decoder0.IN0
+choice[1] => Q[22].DATAIN
+choice[1] => Q[14].DATAIN
+choice[1] => Q[5].DATAIN
+clock_50[0] => ~NO_FANOUT~
+clock_50[1] => ~NO_FANOUT~
+Q[0] <= <VCC>
+Q[1] <= Decoder0.DB_MAX_OUTPUT_PORT_TYPE
+Q[2] <= Decoder0.DB_MAX_OUTPUT_PORT_TYPE
+Q[3] <= Decoder0.DB_MAX_OUTPUT_PORT_TYPE
+Q[4] <= Decoder0.DB_MAX_OUTPUT_PORT_TYPE
+Q[5] <= choice[1].DB_MAX_OUTPUT_PORT_TYPE
+Q[6] <= Decoder0.DB_MAX_OUTPUT_PORT_TYPE
+Q[7] <= <GND>
+Q[8] <= <GND>
+Q[9] <= <GND>
+Q[10] <= Decoder0.DB_MAX_OUTPUT_PORT_TYPE
+Q[11] <= Q.DB_MAX_OUTPUT_PORT_TYPE
+Q[12] <= Decoder0.DB_MAX_OUTPUT_PORT_TYPE
+Q[13] <= Decoder0.DB_MAX_OUTPUT_PORT_TYPE
+Q[14] <= choice[1].DB_MAX_OUTPUT_PORT_TYPE
+Q[15] <= choice[0].DB_MAX_OUTPUT_PORT_TYPE
+Q[16] <= Decoder0.DB_MAX_OUTPUT_PORT_TYPE
+Q[17] <= choice[0].DB_MAX_OUTPUT_PORT_TYPE
+Q[18] <= Q.DB_MAX_OUTPUT_PORT_TYPE
+Q[19] <= Decoder0.DB_MAX_OUTPUT_PORT_TYPE
+Q[20] <= Decoder0.DB_MAX_OUTPUT_PORT_TYPE
+Q[21] <= Decoder0.DB_MAX_OUTPUT_PORT_TYPE
+Q[22] <= choice[1].DB_MAX_OUTPUT_PORT_TYPE
+Q[23] <= choice[0].DB_MAX_OUTPUT_PORT_TYPE
+Q[24] <= Decoder0.DB_MAX_OUTPUT_PORT_TYPE
+Q[25] <= Decoder0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab5_part2|counter:c0|RateDivider:r0
+clock => q[0].CLK
+clock => q[1].CLK
+clock => q[2].CLK
+clock => q[3].CLK
+clock => q[4].CLK
+clock => q[5].CLK
+clock => q[6].CLK
+clock => q[7].CLK
+clock => q[8].CLK
+clock => q[9].CLK
+clock => q[10].CLK
+clock => q[11].CLK
+clock => q[12].CLK
+clock => q[13].CLK
+clock => q[14].CLK
+clock => q[15].CLK
+clock => q[16].CLK
+clock => q[17].CLK
+clock => q[18].CLK
+clock => q[19].CLK
+clock => q[20].CLK
+clock => q[21].CLK
+clock => q[22].CLK
+clock => q[23].CLK
+clock => q[24].CLK
+clock => q[25].CLK
+Q[0] => q.DATAB
+Q[1] => q.DATAB
+Q[2] => q.DATAB
+Q[3] => q.DATAB
+Q[4] => q.DATAB
+Q[5] => q.DATAB
+Q[6] => q.DATAB
+Q[7] => q.DATAB
+Q[8] => q.DATAB
+Q[9] => q.DATAB
+Q[10] => q.DATAB
+Q[11] => q.DATAB
+Q[12] => q.DATAB
+Q[13] => q.DATAB
+Q[14] => q.DATAB
+Q[15] => q.DATAB
+Q[16] => q.DATAB
+Q[17] => q.DATAB
+Q[18] => q.DATAB
+Q[19] => q.DATAB
+Q[20] => q.DATAB
+Q[21] => q.DATAB
+Q[22] => q.DATAB
+Q[23] => q.DATAB
+Q[24] => q.DATAB
+Q[25] => q.DATAB
+enable <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab5_part2|counter:c0|DisplayCounter:d0
+clock => Q[0].CLK
+clock => Q[1].CLK
+clock => Q[2].CLK
+clock => Q[3].CLK
+enable => Q.OUTPUTSELECT
+enable => Q.OUTPUTSELECT
+enable => Q.OUTPUTSELECT
+enable => Q.OUTPUTSELECT
+h[0] <= hex:h0.h
+h[1] <= hex:h0.h
+h[2] <= hex:h0.h
+h[3] <= hex:h0.h
+h[4] <= hex:h0.h
+h[5] <= hex:h0.h
+h[6] <= hex:h0.h
+
+
+|lab5_part2|counter:c0|DisplayCounter:d0|hex:h0
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[1] => h.IN1
+pin[1] => h.IN1
+pin[1] => h.IN1
+pin[1] => h.IN1
+pin[1] => h.IN1
+pin[1] => h.IN1
+pin[1] => h.IN1
+pin[1] => h.IN1
+pin[2] => h.IN0
+pin[2] => h.IN0
+pin[2] => h.IN0
+pin[2] => h.IN0
+pin[3] => h.IN1
+pin[3] => h.IN1
+pin[3] => h.IN1
+pin[3] => h.IN1
+h[0] <= h.DB_MAX_OUTPUT_PORT_TYPE
+h[1] <= h.DB_MAX_OUTPUT_PORT_TYPE
+h[2] <= h.DB_MAX_OUTPUT_PORT_TYPE
+h[3] <= h.DB_MAX_OUTPUT_PORT_TYPE
+h[4] <= h.DB_MAX_OUTPUT_PORT_TYPE
+h[5] <= h.DB_MAX_OUTPUT_PORT_TYPE
+h[6] <= h.DB_MAX_OUTPUT_PORT_TYPE
+
+

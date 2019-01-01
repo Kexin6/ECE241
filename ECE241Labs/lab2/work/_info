@@ -1,0 +1,297 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Users/Kexin Li/Desktop/ECE241 labs/lab2
+vEqn0
+Z0 !s110 1537970437
+!i10b 1
+!s100 >UfOiHXTkF4]Lm[`eM?7m1
+IW_bG=CL6CkTk6e2ji2j1z0
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+Z2 dC:/Users/Kexin Li/Desktop/ECE241Labs/lab2
+Z3 w1537762053
+Z4 8lab2_part3.v
+Z5 Flab2_part3.v
+L0 67
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1537970437.000000
+Z8 !s107 lab2_part3.v|
+Z9 !s90 -reportprogress|300|lab2_part3.v|
+!i113 1
+Z10 tCvgOpt 0
+n@eqn0
+vEqn1
+R0
+!i10b 1
+!s100 nE5?4K9KCCLIz?_43;4Tb3
+IFQ4gJ3cF@G9mY7EE7c1V`0
+R1
+R2
+R3
+R4
+R5
+L0 73
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+n@eqn1
+vEqn2
+R0
+!i10b 1
+!s100 >NZi3[X51Z;7_Qd1S2ohl0
+Il>WNjMmOV3eg@B3WL84S12
+R1
+R2
+R3
+R4
+R5
+L0 79
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+n@eqn2
+vEqn3
+R0
+!i10b 1
+!s100 6bm5DM]z>49j;FKQ1_c;01
+Ic]1hEHRX6z5Z<MahSJU^o3
+R1
+R2
+R3
+R4
+R5
+L0 85
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+n@eqn3
+vEqn4
+R0
+!i10b 1
+!s100 TH6=2c5EmiUfoSGlC07=10
+I7AA1?M;D[K:=[boFg6h>>1
+R1
+R2
+R3
+R4
+R5
+L0 91
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+n@eqn4
+vEqn5
+R0
+!i10b 1
+!s100 :Nhkm2zJcE4H82=R^D;a00
+I674=DG;6Z_D6TV;]z]^l;0
+R1
+R2
+R3
+R4
+R5
+L0 97
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+n@eqn5
+vEqn6
+R0
+!i10b 1
+!s100 c?CR:HM5=ofc9X`dPY`3R2
+I;:A2;`bT`6S^QSNL7VK`d2
+R1
+R2
+R3
+R4
+R5
+L0 103
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+n@eqn6
+vlab2_part2
+Z11 !s110 1537764571
+!i10b 1
+!s100 Jk]P<F6E5L60::nWnG8z31
+ITQezNoM3Jge?ZomDKAj=g0
+R1
+R2
+Z12 w1537752606
+Z13 8lab2_part2.v
+Z14 Flab2_part2.v
+L0 2
+R6
+r1
+!s85 0
+31
+Z15 !s108 1537764571.000000
+Z16 !s107 lab2_part2.v|
+Z17 !s90 -reportprogress|300|lab2_part2.v|
+!i113 1
+R10
+vlab2_part3
+R0
+!i10b 1
+!s100 GnV_EgEWYE6MXPi>Nob0b3
+IM6;UbK8M]aQohCW]meNlC3
+R1
+R2
+R3
+R4
+R5
+L0 2
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+vmux
+Z18 !s110 1537891943
+!i10b 1
+!s100 gdITfj5:eEbOamVHI^l6`0
+I:<b9oefGFn[?hASbTSWH:3
+R1
+R2
+Z19 w1537667912
+Z20 8mux.v
+Z21 Fmux.v
+L0 8
+R6
+r1
+!s85 0
+31
+Z22 !s108 1537891943.000000
+Z23 !s107 mux.v|
+Z24 !s90 -reportprogress|300|mux.v|
+!i113 1
+R10
+vmux2to1
+R18
+!i10b 1
+!s100 afChEB93:g=CUEd@;WQjS2
+I=F?kSLR6zRa1[@IoCQG<60
+R1
+R2
+R19
+R20
+R21
+L0 20
+R6
+r1
+!s85 0
+31
+R22
+R23
+R24
+!i113 1
+R10
+vv7404
+R11
+!i10b 1
+!s100 JfU;`<gCgAT3FZDm2k@=g0
+I3o<g<]i`j@bi0nTi@o7e?3
+R1
+R2
+R12
+R13
+R14
+L0 35
+R6
+r1
+!s85 0
+31
+R15
+R16
+R17
+!i113 1
+R10
+vv7408
+R11
+!i10b 1
+!s100 A@I?bocEOHeY@=mf?2C<B2
+Ic6>BOPR^QgnkX9MeQX@jK1
+R1
+R2
+R12
+R13
+R14
+L0 45
+R6
+r1
+!s85 0
+31
+R15
+R16
+R17
+!i113 1
+R10
+vv7432
+R11
+!i10b 1
+!s100 M]?gYkLj=2VJd?[oX``be1
+IIfFo:_;=9DOoGL@VN5RDL1
+R1
+R2
+R12
+R13
+R14
+L0 54
+R6
+r1
+!s85 0
+31
+R15
+R16
+R17
+!i113 1
+R10

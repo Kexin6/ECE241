@@ -1,0 +1,77 @@
+module lab5_part3 ()
+
+
+endmodule
+
+
+
+module mux (input [2:0] choice, clock, output reg [25:0] Q);
+	
+	always @(*)
+	begin
+		case (choice)
+			3'b000: Q = 26'b101010;
+			3'b001: Q = 26'b111;
+			3'b010: Q = 26'b1010111;
+			3'b011: Q = 26'b101010111;
+			3'b100: Q = 26'b101110111;
+			3'b101: Q = 26'b11101010111;
+			3'b110: Q = 26'b1110101110111;
+			3'b111: Q = 26'b1110111101;
+			default: Q = 0;
+		endcase			
+	end
+endmodule 
+
+module flipflop(input D, input clock, resetn, output reg Q);
+	always @(posedge clock, negedge resetn)
+		if(resetn == 0)
+			Q <= 0;
+		else
+			Q <= D;
+endmodule
+
+module muxShift(input clock, input [12:0] Q, input [12;0] output [12:0] muxOUt);
+	always @(*)
+	begin
+		if (clock == 0)
+			muxOut <= muxOut;
+		else 
+			muxOUt <= Q;
+	end
+
+
+endmodule
+
+module ShiftReg (input [12:0] Q, input muxClock, resetn, enable, output out);
+	wire [12:0] w;
+	muxShift m0 (
+		.clock(muxClock),
+		.Q(Q),
+		.muxOut(w[12])
+	);
+	
+	Q[0] <= Q[1];
+	Q[1] <= Q[2];
+	...
+	
+endmodule
+
+module RateDivider(input clock, output enable);
+	reg [25:0] q;
+	wire [25:0] Q;
+	assign Q = 26'd24999999;
+	
+	always @(posedge clock)
+	begin
+		if (q == 26'd0)
+			q <= Q;
+		else 
+			q <= q - 1;
+	end
+	
+	assign enable = (q == 26'd0) ? 1:0;
+	
+	
+endmodule
+

@@ -1,0 +1,22 @@
+
+State Machine - |lab6_part3|part3:U0|control:C0|current_state
+Name current_state.OUT current_state.ADD_3 current_state.WAIT_3 current_state.S_DIVISOR_3 current_state.S_LEFT_3 current_state.ADD_2 current_state.WAIT_2 current_state.S_DIVISOR_2 current_state.S_LEFT_2 current_state.ADD_1 current_state.WAIT_1 current_state.S_DIVISOR_1 current_state.S_LEFT_1 current_state.ADD_0 current_state.WAIT_0 current_state.S_DIVISOR_0 current_state.S_LEFT_0 current_state.S_LOAD_WAIT current_state.S_LOAD 
+current_state.S_LOAD 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+current_state.S_LOAD_WAIT 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+current_state.S_LEFT_0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 
+current_state.S_DIVISOR_0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 
+current_state.WAIT_0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 
+current_state.ADD_0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 
+current_state.S_LEFT_1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 
+current_state.S_DIVISOR_1 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 
+current_state.WAIT_1 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 
+current_state.ADD_1 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 
+current_state.S_LEFT_2 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 
+current_state.S_DIVISOR_2 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 
+current_state.WAIT_2 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 
+current_state.ADD_2 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 
+current_state.S_LEFT_3 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+current_state.S_DIVISOR_3 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+current_state.WAIT_3 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+current_state.ADD_3 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 
+current_state.OUT 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 

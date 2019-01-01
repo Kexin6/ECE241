@@ -1,0 +1,432 @@
+Analysis & Synthesis report for lab4_part2
+Fri Oct 12 23:01:03 2018
+Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. General Register Statistics
+  9. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 10. Port Connectivity Checks: "hex:h3"
+ 11. Port Connectivity Checks: "hex:h2"
+ 12. Port Connectivity Checks: "hex:h1"
+ 13. Port Connectivity Checks: "ALU:a0|Eqn0:e0|full_adder:f0"
+ 14. Post-Synthesis Netlist Statistics for Top Partition
+ 15. Elapsed Time Per Partition
+ 16. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2018  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
+
+
+
++-------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                  ;
++---------------------------------+---------------------------------------------+
+; Analysis & Synthesis Status     ; Successful - Fri Oct 12 23:01:03 2018       ;
+; Quartus Prime Version           ; 18.0.0 Build 614 04/24/2018 SJ Lite Edition ;
+; Revision Name                   ; lab4_part2                                  ;
+; Top-level Entity Name           ; lab4_part2                                  ;
+; Family                          ; Cyclone V                                   ;
+; Logic utilization (in ALMs)     ; N/A                                         ;
+; Total registers                 ; 8                                           ;
+; Total pins                      ; 66                                          ;
+; Total virtual pins              ; 0                                           ;
+; Total block memory bits         ; 0                                           ;
+; Total DSP Blocks                ; 0                                           ;
+; Total HSSI RX PCSs              ; 0                                           ;
+; Total HSSI PMA RX Deserializers ; 0                                           ;
+; Total HSSI TX PCSs              ; 0                                           ;
+; Total HSSI PMA TX Serializers   ; 0                                           ;
+; Total PLLs                      ; 0                                           ;
+; Total DLLs                      ; 0                                           ;
++---------------------------------+---------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                             ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                          ; Setting            ; Default Value      ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                          ; 5CSEMA5F31C6       ;                    ;
+; Top-level entity name                                                           ; lab4_part2         ; lab4_part2         ;
+; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
+; Use smart compilation                                                           ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                 ;
+; Enable compact report table                                                     ; Off                ; Off                ;
+; Restructure Multiplexers                                                        ; Auto               ; Auto               ;
+; MLAB Add Timing Constraints For Mixed-Port Feed-Through Mode Setting Don't Care ; Off                ; Off                ;
+; Create Debugging Nodes for IP Cores                                             ; Off                ; Off                ;
+; Preserve fewer node names                                                       ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                                   ; Enable             ; Enable             ;
+; Verilog Version                                                                 ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                                    ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                        ; Auto               ; Auto               ;
+; Safe State Machine                                                              ; Off                ; Off                ;
+; Extract Verilog State Machines                                                  ; On                 ; On                 ;
+; Extract VHDL State Machines                                                     ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                               ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                      ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                                  ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                         ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                       ; On                 ; On                 ;
+; Parallel Synthesis                                                              ; On                 ; On                 ;
+; DSP Block Balancing                                                             ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                              ; On                 ; On                 ;
+; Power-Up Don't Care                                                             ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                                    ; Off                ; Off                ;
+; Remove Duplicate Registers                                                      ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                            ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                          ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                           ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                       ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                            ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                             ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                                  ; Off                ; Off                ;
+; Optimization Technique                                                          ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                              ; 70                 ; 70                 ;
+; Auto Carry Chains                                                               ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                            ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                           ; Off                ; Off                ;
+; Auto ROM Replacement                                                            ; On                 ; On                 ;
+; Auto RAM Replacement                                                            ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                      ; On                 ; On                 ;
+; Auto Shift Register Replacement                                                 ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                                 ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                                   ; On                 ; On                 ;
+; Strict RAM Replacement                                                          ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                               ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                           ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                                   ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                             ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                               ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                         ; On                 ; On                 ;
+; Report Parameter Settings                                                       ; On                 ; On                 ;
+; Report Source Assignments                                                       ; On                 ; On                 ;
+; Report Connectivity Checks                                                      ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                              ; Off                ; Off                ;
+; Synchronization Register Chain Length                                           ; 3                  ; 3                  ;
+; Power Optimization During Synthesis                                             ; Normal compilation ; Normal compilation ;
+; HDL message level                                                               ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                                 ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                        ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                              ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                       ; 100                ; 100                ;
+; Clock MUX Protection                                                            ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                     ; Off                ; Off                ;
+; Block Design Naming                                                             ; Auto               ; Auto               ;
+; SDC constraint protection                                                       ; Off                ; Off                ;
+; Synthesis Effort                                                                ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal                    ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                            ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                              ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                     ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                          ; On                 ; On                 ;
+; Automatic Parallel Synthesis                                                    ; On                 ; On                 ;
+; Partial Reconfiguration Bitstream ID                                            ; Off                ; Off                ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 2           ;
+; Maximum allowed            ; 2           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 2           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.0%      ;
++----------------------------+-------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                         ;
++----------------------------------+-----------------+------------------------+--------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                           ; Library ;
++----------------------------------+-----------------+------------------------+--------------------------------------------------------+---------+
+; lab4_part2.v                     ; yes             ; User Verilog HDL File  ; C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v ;         ;
++----------------------------------+-----------------+------------------------+--------------------------------------------------------+---------+
+
+
++------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                      ;
++---------------------------------------------+--------------------+
+; Resource                                    ; Usage              ;
++---------------------------------------------+--------------------+
+; Estimate of Logic utilization (ALMs needed) ; 39                 ;
+;                                             ;                    ;
+; Combinational ALUT usage for logic          ; 59                 ;
+;     -- 7 input functions                    ; 2                  ;
+;     -- 6 input functions                    ; 16                 ;
+;     -- 5 input functions                    ; 4                  ;
+;     -- 4 input functions                    ; 26                 ;
+;     -- <=3 input functions                  ; 11                 ;
+;                                             ;                    ;
+; Dedicated logic registers                   ; 8                  ;
+;                                             ;                    ;
+; I/O pins                                    ; 66                 ;
+;                                             ;                    ;
+; Total DSP Blocks                            ; 0                  ;
+;                                             ;                    ;
+; Maximum fan-out node                        ; register:r0|out[0] ;
+; Maximum fan-out                             ; 18                 ;
+; Total fan-out                               ; 379                ;
+; Average fan-out                             ; 1.90               ;
++---------------------------------------------+--------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                         ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------+-------------+--------------+
+; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                      ; Entity Name ; Library Name ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------+-------------+--------------+
+; |lab4_part2                ; 59 (0)              ; 8 (0)                     ; 0                 ; 0          ; 66   ; 0            ; |lab4_part2                              ; lab4_part2  ; work         ;
+;    |ALU:a0|                ; 13 (0)              ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |lab4_part2|ALU:a0                       ; ALU         ; work         ;
+;       |Eqn0:e0|            ; 4 (0)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |lab4_part2|ALU:a0|Eqn0:e0               ; Eqn0        ; work         ;
+;          |full_adder:f0|   ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |lab4_part2|ALU:a0|Eqn0:e0|full_adder:f0 ; full_adder  ; work         ;
+;          |full_adder:f1|   ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |lab4_part2|ALU:a0|Eqn0:e0|full_adder:f1 ; full_adder  ; work         ;
+;          |full_adder:f2|   ; 2 (2)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |lab4_part2|ALU:a0|Eqn0:e0|full_adder:f2 ; full_adder  ; work         ;
+;       |Eqn1:e1|            ; 5 (5)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |lab4_part2|ALU:a0|Eqn1:e1               ; Eqn1        ; work         ;
+;       |Eqn3:e3|            ; 1 (1)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |lab4_part2|ALU:a0|Eqn3:e3               ; Eqn3        ; work         ;
+;       |Eqn4:e4|            ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |lab4_part2|ALU:a0|Eqn4:e4               ; Eqn4        ; work         ;
+;    |hex:h0|                ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |lab4_part2|hex:h0                       ; hex         ; work         ;
+;    |hex:h4|                ; 8 (8)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |lab4_part2|hex:h4                       ; hex         ; work         ;
+;    |hex:h5|                ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |lab4_part2|hex:h5                       ; hex         ; work         ;
+;    |register:r0|           ; 24 (24)             ; 8 (8)                     ; 0                 ; 0          ; 0    ; 0            ; |lab4_part2|register:r0                  ; register    ; work         ;
++----------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+------------------------------------------+-------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 8     ;
+; Number of registers using Synchronous Clear  ; 3     ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 5     ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                               ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output     ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------+
+; 7:1                ; 2 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |lab4_part2|register:r0|out[6] ;
+; 8:1                ; 3 bits    ; 15 LEs        ; 15 LEs               ; 0 LEs                  ; Yes        ; |lab4_part2|register:r0|out[1] ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "hex:h3"                                                                                                                                                                               ;
++----------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port     ; Type  ; Severity ; Details                                                                                                                                                                            ;
++----------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; pin1     ; Input ; Warning  ; Input port expression (32 bits) is wider than the input port (1 bits) it drives.  The 31 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; pin1[-1] ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; pin2     ; Input ; Warning  ; Input port expression (32 bits) is wider than the input port (1 bits) it drives.  The 31 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; pin2[-1] ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; pin3     ; Input ; Warning  ; Input port expression (32 bits) is wider than the input port (1 bits) it drives.  The 31 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; pin3[-1] ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; pin4     ; Input ; Warning  ; Input port expression (32 bits) is wider than the input port (1 bits) it drives.  The 31 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; pin4[-1] ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
++----------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "hex:h2"                                                                                                                                                                               ;
++----------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port     ; Type  ; Severity ; Details                                                                                                                                                                            ;
++----------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; pin1     ; Input ; Warning  ; Input port expression (32 bits) is wider than the input port (1 bits) it drives.  The 31 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; pin1[-1] ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; pin2     ; Input ; Warning  ; Input port expression (32 bits) is wider than the input port (1 bits) it drives.  The 31 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; pin2[-1] ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; pin3     ; Input ; Warning  ; Input port expression (32 bits) is wider than the input port (1 bits) it drives.  The 31 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; pin3[-1] ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; pin4     ; Input ; Warning  ; Input port expression (32 bits) is wider than the input port (1 bits) it drives.  The 31 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; pin4[-1] ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
++----------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "hex:h1"                                                                                                                                                                               ;
++----------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port     ; Type  ; Severity ; Details                                                                                                                                                                            ;
++----------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; pin1     ; Input ; Warning  ; Input port expression (32 bits) is wider than the input port (1 bits) it drives.  The 31 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; pin1[-1] ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; pin2     ; Input ; Warning  ; Input port expression (32 bits) is wider than the input port (1 bits) it drives.  The 31 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; pin2[-1] ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; pin3     ; Input ; Warning  ; Input port expression (32 bits) is wider than the input port (1 bits) it drives.  The 31 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; pin3[-1] ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
+; pin4     ; Input ; Warning  ; Input port expression (32 bits) is wider than the input port (1 bits) it drives.  The 31 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; pin4[-1] ; Input ; Info     ; Stuck at GND                                                                                                                                                                       ;
++----------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------+
+; Port Connectivity Checks: "ALU:a0|Eqn0:e0|full_adder:f0" ;
++------+-------+----------+--------------------------------+
+; Port ; Type  ; Severity ; Details                        ;
++------+-------+----------+--------------------------------+
+; cin  ; Input ; Info     ; Stuck at GND                   ;
++------+-------+----------+--------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; arriav_ff             ; 8                           ;
+;     ENA               ; 5                           ;
+;     SCLR              ; 3                           ;
+; arriav_lcell_comb     ; 61                          ;
+;     arith             ; 5                           ;
+;         0 data inputs ; 1                           ;
+;         2 data inputs ; 4                           ;
+;     extend            ; 2                           ;
+;         7 data inputs ; 2                           ;
+;     normal            ; 54                          ;
+;         0 data inputs ; 2                           ;
+;         2 data inputs ; 4                           ;
+;         3 data inputs ; 2                           ;
+;         4 data inputs ; 26                          ;
+;         5 data inputs ; 4                           ;
+;         6 data inputs ; 16                          ;
+; boundary_port         ; 66                          ;
+;                       ;                             ;
+; Max LUT depth         ; 4.00                        ;
+; Average LUT depth     ; 2.24                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:00     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
+    Info: Processing started: Fri Oct 12 23:00:48 2018
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off lab4_part2 -c lab4_part2
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
+Info (12021): Found 12 design units, including 12 entities, in source file lab4_part2.v
+    Info (12023): Found entity 1: lab4_part2 File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 1
+    Info (12023): Found entity 2: Eqn0 File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 114
+    Info (12023): Found entity 3: full_adder File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 157
+    Info (12023): Found entity 4: Eqn1 File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 164
+    Info (12023): Found entity 5: Eqn2 File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 173
+    Info (12023): Found entity 6: Eqn3 File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 180
+    Info (12023): Found entity 7: Eqn4 File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 194
+    Info (12023): Found entity 8: Eqn5 File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 208
+    Info (12023): Found entity 9: Eqn6 File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 215
+    Info (12023): Found entity 10: ALU File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 220
+    Info (12023): Found entity 11: register File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 286
+    Info (12023): Found entity 12: hex File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 300
+Warning (10236): Verilog HDL Implicit Net warning at lab4_part2.v(117): created implicit net for "cin" File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 117
+Info (12127): Elaborating entity "lab4_part2" for the top level hierarchy
+Warning (10034): Output port "LEDR[9..8]" at lab4_part2.v(4) has no driver File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 4
+Info (12128): Elaborating entity "register" for hierarchy "register:r0" File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 14
+Info (12128): Elaborating entity "ALU" for hierarchy "ALU:a0" File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 21
+Info (12128): Elaborating entity "Eqn0" for hierarchy "ALU:a0|Eqn0:e0" File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 228
+Info (12128): Elaborating entity "full_adder" for hierarchy "ALU:a0|Eqn0:e0|full_adder:f3" File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 128
+Info (12128): Elaborating entity "Eqn1" for hierarchy "ALU:a0|Eqn1:e1" File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 234
+Info (12128): Elaborating entity "Eqn2" for hierarchy "ALU:a0|Eqn2:e2" File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 240
+Info (12128): Elaborating entity "Eqn3" for hierarchy "ALU:a0|Eqn3:e3" File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 246
+Info (12128): Elaborating entity "Eqn4" for hierarchy "ALU:a0|Eqn4:e4" File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 252
+Info (12128): Elaborating entity "Eqn5" for hierarchy "ALU:a0|Eqn5:e5" File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 258
+Info (12128): Elaborating entity "Eqn6" for hierarchy "ALU:a0|Eqn6:e6" File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 264
+Info (12128): Elaborating entity "hex" for hierarchy "hex:h0" File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 35
+Warning (12241): 3 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "LEDR[8]" is stuck at GND File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 4
+    Warning (13410): Pin "LEDR[9]" is stuck at GND File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 4
+    Warning (13410): Pin "HEX1[0]" is stuck at GND File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 5
+    Warning (13410): Pin "HEX1[1]" is stuck at GND File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 5
+    Warning (13410): Pin "HEX1[2]" is stuck at GND File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 5
+    Warning (13410): Pin "HEX1[3]" is stuck at GND File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 5
+    Warning (13410): Pin "HEX1[4]" is stuck at GND File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 5
+    Warning (13410): Pin "HEX1[5]" is stuck at GND File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 5
+    Warning (13410): Pin "HEX1[6]" is stuck at VCC File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 5
+    Warning (13410): Pin "HEX2[0]" is stuck at GND File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 5
+    Warning (13410): Pin "HEX2[1]" is stuck at GND File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 5
+    Warning (13410): Pin "HEX2[2]" is stuck at GND File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 5
+    Warning (13410): Pin "HEX2[3]" is stuck at GND File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 5
+    Warning (13410): Pin "HEX2[4]" is stuck at GND File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 5
+    Warning (13410): Pin "HEX2[5]" is stuck at GND File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 5
+    Warning (13410): Pin "HEX2[6]" is stuck at VCC File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 5
+    Warning (13410): Pin "HEX3[0]" is stuck at GND File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 5
+    Warning (13410): Pin "HEX3[1]" is stuck at GND File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 5
+    Warning (13410): Pin "HEX3[2]" is stuck at GND File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 5
+    Warning (13410): Pin "HEX3[3]" is stuck at GND File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 5
+    Warning (13410): Pin "HEX3[4]" is stuck at GND File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 5
+    Warning (13410): Pin "HEX3[5]" is stuck at GND File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 5
+    Warning (13410): Pin "HEX3[6]" is stuck at VCC File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 5
+Info (286030): Timing-Driven Synthesis is running
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 5 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "SW[4]" File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 2
+    Warning (15610): No output dependent on input pin "SW[5]" File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 2
+    Warning (15610): No output dependent on input pin "SW[6]" File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 2
+    Warning (15610): No output dependent on input pin "SW[7]" File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 2
+    Warning (15610): No output dependent on input pin "SW[8]" File: C:/Users/Kexin Li/Desktop/ECE241Labs/lab4/lab4_part2.v Line: 2
+Info (21057): Implemented 125 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 14 input pins
+    Info (21059): Implemented 52 output pins
+    Info (21061): Implemented 59 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 34 warnings
+    Info: Peak virtual memory: 4828 megabytes
+    Info: Processing ended: Fri Oct 12 23:01:03 2018
+    Info: Elapsed time: 00:00:15
+    Info: Total CPU time (on all processors): 00:00:21
+
+

@@ -1,0 +1,10 @@
+
+State Machine - |lab7_part2|fill:f0|logic:l0|control:c0|current_state
+Name current_state.BLACK current_state.OUT current_state.S_DRAW current_state.WAIT_1 current_state.S_LOAD_Y_COLOR current_state.WAIT_0 current_state.S_LOAD_X 
+current_state.S_LOAD_X 0 0 0 0 0 0 0 
+current_state.WAIT_0 0 0 0 0 0 1 1 
+current_state.S_LOAD_Y_COLOR 0 0 0 0 1 0 1 
+current_state.WAIT_1 0 0 0 1 0 0 1 
+current_state.S_DRAW 0 0 1 0 0 0 1 
+current_state.OUT 0 1 0 0 0 0 1 
+current_state.BLACK 1 0 0 0 0 0 1 

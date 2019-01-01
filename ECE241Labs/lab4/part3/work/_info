@@ -1,0 +1,91 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/Kexin Li/Desktop/ECE241Labs/lab4/part3
+vflipflop
+Z1 !s110 1539489659
+!i10b 1
+!s100 gBdNR@^ETJ9gimVoH7LZS3
+IZCaZKEKk[YJQOGzjjL`mV3
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1539405831
+Z4 8lab4_part3.v
+Z5 Flab4_part3.v
+L0 111
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1539489659.000000
+Z8 !s107 lab4_part3.v|
+Z9 !s90 -reportprogress|300|lab4_part3.v|
+!i113 1
+Z10 tCvgOpt 0
+vlab4_part3
+R1
+!i10b 1
+!s100 0:32;AMkQAACghU^`ilmF0
+IVk7i7zT1]6J][9Zh2iAMO2
+R2
+R0
+R3
+R4
+R5
+L0 1
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+vmux
+R1
+!i10b 1
+!s100 YAin6Od5EDfZbIm_dZEk93
+IfnNd3S[T659A;?YSmX`o22
+R2
+R0
+R3
+R4
+R5
+L0 107
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+vsubCircuit
+R1
+!i10b 1
+!s100 KNJFaZ5O0e3_4UjU?^n?42
+IZ1[iTM^ZD9i?UhO>g6Bc53
+R2
+R0
+R3
+R4
+R5
+L0 119
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+nsub@circuit

@@ -1,0 +1,134 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Users/Kexin Li/Desktop/EcE241Labs/lab5/part3
+vlab5_part3
+Z0 !s110 1540136020
+!i10b 1
+!s100 KShWb5o=42_bCXnJn`d9E0
+IJ`fkh85ji]8d?^:I?bE380
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+Z2 dC:/Users/Kexin Li/desktop/eCE241Labs/lab5/part3
+Z3 w1540082403
+Z4 8lab5_part3.v
+Z5 Flab5_part3.v
+L0 1
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1540136020.000000
+Z8 !s107 lab5_part3.v|
+Z9 !s90 -reportprogress|300|lab5_part3.v|
+!i113 1
+Z10 tCvgOpt 0
+vmorseCoder
+R0
+!i10b 1
+!s100 a_AIdW@g:[XOoULMULmST0
+IaN?0eeH:F5J1GW:g==e:D1
+R1
+R2
+R3
+R4
+R5
+L0 17
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+nmorse@coder
+vmux
+R0
+!i10b 1
+!s100 ?`[lnPOFgSTgMW[=b;hZ20
+I<0jRnC49;DGnAfm>4b>RL0
+R1
+R2
+R3
+R4
+R5
+L0 43
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+vmuxShift
+!s110 1540081712
+!i10b 1
+!s100 @FCVcTCYf5[JV97lc9e:<3
+IUH_IPhUS6CEAnM1^9kSi;1
+R1
+dC:/Users/Kexin Li/Desktop/ECE241Labs/lab5/part3
+w1540081586
+R4
+R5
+L0 72
+R6
+r1
+!s85 0
+31
+!s108 1540081712.000000
+R8
+R9
+!i113 1
+R10
+nmux@shift
+vRateDivider
+R0
+!i10b 1
+!s100 S2c@U[^FLX7JgS?WlN6P81
+I6bO:CL9zVgL@fEziY9Z?G3
+R1
+R2
+R3
+R4
+R5
+L0 89
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+n@rate@divider
+vShiftReg
+R0
+!i10b 1
+!s100 VldjRG>fh>kA>mCJ;jR220
+IaM8FQl1gD4WOdPWT=2bhV0
+R1
+R2
+R3
+R4
+R5
+L0 61
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+n@shift@reg

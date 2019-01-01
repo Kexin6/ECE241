@@ -1,0 +1,181 @@
+|lab5_part1
+SW[0] => SW[0].IN1
+SW[1] => SW[1].IN1
+KEY[0] => KEY[0].IN1
+KEY[1] => ~NO_FANOUT~
+KEY[2] => ~NO_FANOUT~
+KEY[3] => ~NO_FANOUT~
+HEX0[0] << eight_bit_counter:comb_3.H1
+HEX0[1] << eight_bit_counter:comb_3.H1
+HEX0[2] << eight_bit_counter:comb_3.H1
+HEX0[3] << eight_bit_counter:comb_3.H1
+HEX0[4] << eight_bit_counter:comb_3.H1
+HEX0[5] << eight_bit_counter:comb_3.H1
+HEX0[6] << eight_bit_counter:comb_3.H1
+HEX1[0] << eight_bit_counter:comb_3.H0
+HEX1[1] << eight_bit_counter:comb_3.H0
+HEX1[2] << eight_bit_counter:comb_3.H0
+HEX1[3] << eight_bit_counter:comb_3.H0
+HEX1[4] << eight_bit_counter:comb_3.H0
+HEX1[5] << eight_bit_counter:comb_3.H0
+HEX1[6] << eight_bit_counter:comb_3.H0
+
+
+|lab5_part1|eight_bit_counter:comb_3
+enable => enable.IN1
+clock => clock.IN8
+clear_b => clear_b.IN8
+H0[0] <= hex:h0.h
+H0[1] <= hex:h0.h
+H0[2] <= hex:h0.h
+H0[3] <= hex:h0.h
+H0[4] <= hex:h0.h
+H0[5] <= hex:h0.h
+H0[6] <= hex:h0.h
+H1[0] <= hex:h1.h
+H1[1] <= hex:h1.h
+H1[2] <= hex:h1.h
+H1[3] <= hex:h1.h
+H1[4] <= hex:h1.h
+H1[5] <= hex:h1.h
+H1[6] <= hex:h1.h
+
+
+|lab5_part1|eight_bit_counter:comb_3|TFlipFlop:t7
+T => Q~reg0.ENA
+clock => Q~reg0.CLK
+clear_b => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab5_part1|eight_bit_counter:comb_3|TFlipFlop:t6
+T => Q~reg0.ENA
+clock => Q~reg0.CLK
+clear_b => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab5_part1|eight_bit_counter:comb_3|TFlipFlop:t5
+T => Q~reg0.ENA
+clock => Q~reg0.CLK
+clear_b => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab5_part1|eight_bit_counter:comb_3|TFlipFlop:t4
+T => Q~reg0.ENA
+clock => Q~reg0.CLK
+clear_b => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab5_part1|eight_bit_counter:comb_3|TFlipFlop:t3
+T => Q~reg0.ENA
+clock => Q~reg0.CLK
+clear_b => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab5_part1|eight_bit_counter:comb_3|TFlipFlop:t2
+T => Q~reg0.ENA
+clock => Q~reg0.CLK
+clear_b => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab5_part1|eight_bit_counter:comb_3|TFlipFlop:t1
+T => Q~reg0.ENA
+clock => Q~reg0.CLK
+clear_b => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab5_part1|eight_bit_counter:comb_3|TFlipFlop:t0
+T => Q~reg0.ENA
+clock => Q~reg0.CLK
+clear_b => Q~reg0.ACLR
+Q <= Q~reg0.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab5_part1|eight_bit_counter:comb_3|hex:h0
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[1] => h.IN1
+pin[1] => h.IN1
+pin[1] => h.IN1
+pin[1] => h.IN1
+pin[1] => h.IN1
+pin[1] => h.IN1
+pin[1] => h.IN1
+pin[1] => h.IN1
+pin[2] => h.IN0
+pin[2] => h.IN0
+pin[2] => h.IN0
+pin[2] => h.IN0
+pin[3] => h.IN1
+pin[3] => h.IN1
+pin[3] => h.IN1
+pin[3] => h.IN1
+h[0] <= h.DB_MAX_OUTPUT_PORT_TYPE
+h[1] <= h.DB_MAX_OUTPUT_PORT_TYPE
+h[2] <= h.DB_MAX_OUTPUT_PORT_TYPE
+h[3] <= h.DB_MAX_OUTPUT_PORT_TYPE
+h[4] <= h.DB_MAX_OUTPUT_PORT_TYPE
+h[5] <= h.DB_MAX_OUTPUT_PORT_TYPE
+h[6] <= h.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab5_part1|eight_bit_counter:comb_3|hex:h1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[0] => h.IN1
+pin[1] => h.IN1
+pin[1] => h.IN1
+pin[1] => h.IN1
+pin[1] => h.IN1
+pin[1] => h.IN1
+pin[1] => h.IN1
+pin[1] => h.IN1
+pin[1] => h.IN1
+pin[2] => h.IN0
+pin[2] => h.IN0
+pin[2] => h.IN0
+pin[2] => h.IN0
+pin[3] => h.IN1
+pin[3] => h.IN1
+pin[3] => h.IN1
+pin[3] => h.IN1
+h[0] <= h.DB_MAX_OUTPUT_PORT_TYPE
+h[1] <= h.DB_MAX_OUTPUT_PORT_TYPE
+h[2] <= h.DB_MAX_OUTPUT_PORT_TYPE
+h[3] <= h.DB_MAX_OUTPUT_PORT_TYPE
+h[4] <= h.DB_MAX_OUTPUT_PORT_TYPE
+h[5] <= h.DB_MAX_OUTPUT_PORT_TYPE
+h[6] <= h.DB_MAX_OUTPUT_PORT_TYPE
+
+

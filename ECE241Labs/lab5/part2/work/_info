@@ -1,0 +1,132 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/Kexin Li/desktop/ecE241Labs/lab5/part2
+vcounter
+Z1 !s110 1540168447
+!i10b 1
+!s100 ^4XdUUffDSk3O2Rfc66V>3
+IRF;cFon<nAiHTdFlWNFKT2
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1540131116
+Z4 8lab5_part2.v
+Z5 Flab5_part2.v
+L0 14
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1540168447.000000
+Z8 !s107 lab5_part2.v|
+Z9 !s90 -reportprogress|300|lab5_part2.v|
+!i113 1
+Z10 tCvgOpt 0
+vDisplayCounter
+R1
+!i10b 1
+!s100 G^=hkI=j26nGJ1P28O7Az0
+IUICDl]hkzIjd3ZYa^OO:N2
+R2
+R0
+R3
+R4
+R5
+L0 55
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+n@display@counter
+vhex
+R1
+!i10b 1
+!s100 [c3@1MR]TJlj0XXh972<^0
+IVOY4Z_mm^bQe@=ndgJmUX2
+R2
+R0
+R3
+R4
+R5
+L0 87
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+vlab5_part2
+R1
+!i10b 1
+!s100 42dlTbL7ik?hJe]eOROi72
+I?5cP3N46iTDj7;Jh@7;VS3
+R2
+R0
+R3
+R4
+R5
+L0 1
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+vmux
+R1
+!i10b 1
+!s100 aLSj?>OKL_hF_d?IFoA]V1
+IKSE:3lzG^7UHVZF?RZRU>0
+R2
+R0
+R3
+R4
+R5
+L0 71
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+vRateDivider
+R1
+!i10b 1
+!s100 `@JiTf@QNz>;k9gJFnGFA0
+I=h<TE7AOzlM]MJ^d=X68z0
+R2
+R0
+R3
+R4
+R5
+L0 39
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+n@rate@divider

@@ -1,0 +1,59 @@
+module lab5_part2();
+
+endmodule
+
+module RateDivider(input clock, output enable, );
+	reg[26:0] Q;
+	
+	always 
+endmodule
+
+module DisplayCounter(input enable, clock, output [6:0] h);
+	reg [3:0] Q;
+	
+	always @(posedge clock)
+	begin
+		if (enable == 1'b1)
+			Q <= Q + 1;
+	end
+	
+	hex h0 (
+		.pin(Q),
+		.h(h)
+	);
+endmodule
+
+
+
+module TFlipFlop (input T, clock, clear_b, output reg Q);
+	always @ (posedge clock, negedge clear_b)
+		begin
+			if(clear_b == 0)
+				Q <= 0;
+			else 
+				begin
+					if (T)
+						Q <= ~Q;
+				end
+				
+		end
+endmodule
+
+
+
+module hex(input [3:0] pin, output [6:0] h);
+	assign h[6] = (~pin[3] & ~pin[2] & ~pin[1] & pin[0]) | (~pin[3] & pin[2] & ~pin[1] & ~pin[0]) | 
+		(pin[3] & ~pin[2] & pin[1] & pin[0]) | (pin[3] & pin[2] & ~pin[1] & pin[0]);
+	assign h[5] = (~pin[3] & pin[2] & ~pin[1] & pin[0]) | (~pin[3] & pin[2] & pin[1] & ~pin[0]) |(pin[3] & ~pin[2] & pin[1] & pin[0]) |
+		(pin[3] & pin[2] & ~pin[1] & ~pin[0]) | (pin[3] & pin[2] & pin[1] & ~pin[0]) | (pin[3] & pin[2] & pin[1] & pin[0]);
+	assign h[4] = (~pin[3] & ~pin[2] & pin[1] & ~pin[0]) | (pin[3] & pin[2] & ~pin[1] & ~pin[0]) | 
+		(pin[3] & pin[2] & pin[1] & ~pin[0]) | (pin[3] & pin[2] & pin[1] & pin[0]);
+	assign h[3] = (~pin[3] & ~pin[2] & ~pin[1] & pin[0]) | (~pin[3] & pin[2] & ~pin[1] & ~pin[0]) | (~pin[3] & pin[2] & pin[1] & pin[0]) |
+		(pin[3] & ~pin[2] & pin[1] & ~pin[0]) | (pin[3] & pin[2] & pin[1] & pin[0]);
+	assign h[2] = (~pin[3] & ~pin[2] & ~pin[1] & pin[0]) | (~pin[3] & ~pin[2] & pin[1] & pin[0]) | (~pin[3] & pin[2] & ~pin[1] & ~pin[0]) |
+		(~pin[3] & pin[2] & ~pin[1] & pin[0]) | (~pin[3] & pin[2] & pin[1] & pin[0]) | (pin[3] & ~pin[2] & ~pin[1] & pin[0]);
+	assign h[1] = (~pin[3] & ~pin[2] & ~pin[1] & pin[0]) | (~pin[3] & ~pin[2] & pin[1] & ~pin[0]) | (~pin[3] & ~pin[2] & pin[1] & pin[0]) |
+		(~pin[3] & pin[2] & pin[1] & pin[0]) | (pin[3] & pin[2] & ~pin[1] & pin[0]);
+	assign h[0] = (~pin[3] & ~pin[2] & ~pin[1] & ~pin[0])| (~pin[3] & ~pin[2] & ~pin[1] & pin[0]) |
+		(~pin[3] & pin[2] & pin[1] & pin[0]) | (pin[3] & pin[2] & ~pin[1] & ~pin[0]);
+endmodule

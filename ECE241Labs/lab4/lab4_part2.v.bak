@@ -1,0 +1,138 @@
+module lab4_part2(SW, LEDR, HEX0);
+
+endmodule
+
+
+//ALU modules
+
+//Modules for the first case
+module Eqn0(input [3:0] A, input [3:0] B, output [7:0] ALUout);
+		wire w1, w2, w3;
+		
+		assign cin = 1'b0;
+		assign ALUout[7] = 0;
+		assign ALUout[6] = 0;
+		assign ALUout[5] = 0;
+	
+	full_adder f3 (
+		.a(A[3]),
+		.b(B[3]),
+		.cin(w3), 
+		.s(ALUout[3]),
+		.cout(ALUout[4])
+	);
+	
+	full_adder f2 (
+		.a(A[2]),
+		.b(B[2]),
+		.cin(w2),
+		.s(ALUout[2]),
+		.cout(w3)
+	);
+	
+	full_adder f1 (
+		.a(A[1]),
+		.b(B[1]),
+		.cin(w1),
+		.s(ALUout[1]),
+		.cout(w2)
+	);
+	
+	full_adder f0 (
+		.a(A[0]),
+		.b(B[0]),
+		.cin(cin),
+		.s(ALUout[0]),
+		.cout(w1)
+	);
+	
+
+endmodule
+
+module full_adder (input a, b, cin, output cout, s);
+	assign s = a ^ b ^ cin;
+	assign cout = (a & b) | (b & cin) | (a & cin);
+endmodule
+
+
+//Module for the second case
+module Eqn1(input [3:0] A, input [3:0] B, output [7:0] ALUout);
+	assign ALUout = A + B;
+	assign ALUout[7] = 1'b0;
+	assign ALUout[6] = 1'b0;
+	assign ALUout[5] = 1'b0;
+endmodule
+  
+  
+//Modules for the third case
+module Eqn2(input [3:0] A, input [3:0] B, output [7:0] ALUout);
+	assign ALUout = {~(A | B), ~(A & B)};
+	
+endmodule
+
+
+//Module for the 4th case
+module Eqn3(input [3:0] A, input [3:0] B, output reg [7:0] ALUout);
+
+always @(*)
+	begin
+		if ((|A) | (|B)) 
+			ALUout = 8'b11000000; //May cause an error again!!!!!!!!!!!!!!!!!!!!!!!!!!
+		else 
+			ALUout = 8'b00000000;
+	end
+endmodule
+
+
+
+//Module for the 5th case 
+module Eqn4(input [3:0] A, input [3:0] B, output reg [7:0] ALUout);
+
+always @(*)
+	begin
+		if ((A == 4'b1100 | A == 4'b0110 | A == 4'b0011 | A == 4'b1001 | A == 4'b1010 | A == 4'b0101) 
+		& (B == 4'b1110 | B == 4'b0111 | B == 4'b1011 | B == 4'b1101)) 
+			ALUout = 8'b00111111; //May cause an error again!!!!!!!!!!!!!!!!!!!!!!!!!!
+		else 
+			ALUout = 8'b00000000;
+	end
+endmodule
+
+
+//Module for the 6th case
+module Eqn5(input [3:0] A, input [3:0] B, output [7:0] ALUout);
+	assign ALUout[7:4] = B;
+	assign ALUout[3:0] = ~A;
+endmodule
+
+
+//Modules for the 7th case
+module Eqn6(input [3:0] A, input [3:0] B, output [7:0] ALUout);
+	assign ALUout = {A ^ B, A ^~ B};
+	
+endmodule
+
+module Eqn7(input [7:0] registerIn, output [7:0] ALUout);
+	assign ALUout = registerIn;
+endmodule
+
+module ALU(input [3:0] data, input [7:0] registerIn, output [3:0] decoder);
+	Eqn
+
+
+module hex(input pin1, pin2, pin3, pin4, output h0, h1, h2, h3, h4, h5, h6);
+	assign h0 = (~pin1 & ~pin2 & ~pin3 & pin4) | (~pin1 & pin2 & ~pin3 & ~pin4) | 
+		(pin1 & ~pin2 & pin3 & pin4) | (pin1 & pin2 & ~pin3 & pin4);
+	assign h1 = (~pin1 & pin2 & ~pin3 & pin4) | (~pin1 & pin2 & pin3 & ~pin4) |(pin1 & ~pin2 & pin3 & pin4) |
+		(pin1 & pin2 & ~pin3 & ~pin4) | (pin1 & pin2 & pin3 & ~pin4) | (pin1 & pin2 & pin3 & pin4);
+	assign h2 = (~pin1 & ~pin2 & pin3 & ~pin4) | (pin1 & pin2 & ~pin3 & ~pin4) | 
+		(pin1 & pin2 & pin3 & ~pin4) | (pin1 & pin2 & pin3 & pin4);
+	assign h3 = (~pin1 & ~pin2 & ~pin3 & pin4) | (~pin1 & pin2 & ~pin3 & ~pin4) | (~pin1 & pin2 & pin3 & pin4) |
+		(pin1 & ~pin2 & pin3 & ~pin4) | (pin1 & pin2 & pin3 & pin4);
+	assign h4 = (~pin1 & ~pin2 & ~pin3 & pin4) | (~pin1 & ~pin2 & pin3 & pin4) | (~pin1 & pin2 & ~pin3 & ~pin4) |
+		(~pin1 & pin2 & ~pin3 & pin4) | (~pin1 & pin2 & pin3 & pin4) | (pin1 & ~pin2 & ~pin3 & pin4);
+	assign h5 = (~pin1 & ~pin2 & ~pin3 & pin4) | (~pin1 & ~pin2 & pin3 & ~pin4) | (~pin1 & ~pin2 & pin3 & pin4) |
+		(~pin1 & pin2 & pin3 & pin4) | (pin1 & pin2 & ~pin3 & pin4);
+	assign h6 = (~pin1 & ~pin2 & ~pin3 & ~pin4)| (~pin1 & ~pin2 & ~pin3 & pin4) |
+		(~pin1 & pin2 & pin3 & pin4) | (pin1 & pin2 & ~pin3 & ~pin4);
+endmodule

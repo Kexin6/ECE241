@@ -1,0 +1,91 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/Kexin Li/desktop/ece241Labs/lab5/part1
+veight_bit_counter
+Z1 !s110 1540095995
+!i10b 1
+!s100 :_[aP[YbD4V66@AV:C3[_2
+IVBN0EzjY4i?SV2jT<`NMY2
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1540000888
+Z4 8lab5_part1.v
+Z5 Flab5_part1.v
+L0 17
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1540095994.000000
+Z8 !s107 lab5_part1.v|
+Z9 !s90 -reportprogress|300|lab5_part1.v|
+!i113 1
+Z10 tCvgOpt 0
+vhex
+R1
+!i10b 1
+!s100 n;TP@zFHYl6mhVILMn9@@1
+I27zbA?iV7Xa84jAdB8GDU1
+R2
+R0
+R3
+R4
+R5
+L0 119
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+vlab5_part1
+R1
+!i10b 1
+!s100 N0K33]4Izf^BBoP]K1O[73
+II5PaZ1WLFWmWoLM8;>@dU0
+R2
+R0
+R3
+R4
+R5
+L0 1
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+vTFlipFlop
+R1
+!i10b 1
+!s100 OZEQLP9S37Qmnj]c2cCzU0
+IoCBZiTDO0LTFOFAPjTIDS1
+R2
+R0
+R3
+R4
+R5
+L0 105
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+n@t@flip@flop

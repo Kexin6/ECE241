@@ -1,0 +1,258 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/Kexin Li/Desktop/ECE241Labs/lab4
+vALU
+Z1 !s110 1539484265
+!i10b 1
+!s100 YUFbVPHEzdABAF1Ri8Ddh3
+IFdUMzF]U0nVDl6=4`8Hi73
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1539399644
+Z4 8lab4_part2.v
+Z5 Flab4_part2.v
+L0 220
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1539484265.000000
+Z8 !s107 lab4_part2.v|
+Z9 !s90 -reportprogress|300|lab4_part2.v|
+!i113 1
+Z10 tCvgOpt 0
+n@a@l@u
+vEqn0
+R1
+!i10b 1
+!s100 @f2ii7cP<i>zc?[aToG1d3
+IK>VCCE6GkKYd0ESUKzHA11
+R2
+R0
+R3
+R4
+R5
+L0 114
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+n@eqn0
+vEqn1
+R1
+!i10b 1
+!s100 ]@WG?i1e6ZB4g>0URJnnj0
+ILY2DIH8_<4Qo7;_0K1NgI2
+R2
+R0
+R3
+R4
+R5
+L0 164
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+n@eqn1
+vEqn2
+R1
+!i10b 1
+!s100 MV;g:4194AkBKBjf9D_?L0
+ID^OIP3Sg4<_l^74B?7E833
+R2
+R0
+R3
+R4
+R5
+L0 173
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+n@eqn2
+vEqn3
+R1
+!i10b 1
+!s100 Xe`_<QM4gV87TQ_@?Lz[V1
+IaM_o5lm30B9F9:AYkbBQT2
+R2
+R0
+R3
+R4
+R5
+L0 180
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+n@eqn3
+vEqn4
+R1
+!i10b 1
+!s100 6=VF`b=TPzcZRj>T0]N7T0
+IMeMB21`j9zjPg0kf6@zBZ2
+R2
+R0
+R3
+R4
+R5
+L0 194
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+n@eqn4
+vEqn5
+R1
+!i10b 1
+!s100 >1N=ol;S0552Y?F`E4eZz3
+I;YL4TQ2nO8jM^elne;fLm0
+R2
+R0
+R3
+R4
+R5
+L0 208
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+n@eqn5
+vEqn6
+R1
+!i10b 1
+!s100 9G66c7lSKTA4iY@L8ZK0z2
+Ijel?lk0X5>hao3:`z[Hk32
+R2
+R0
+R3
+R4
+R5
+L0 215
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+n@eqn6
+vfull_adder
+R1
+!i10b 1
+!s100 ldBf7_=CnKG@l8I0dk`[H0
+IYO^C25iO[jK[9fiz046323
+R2
+R0
+R3
+R4
+R5
+L0 157
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+vhex
+R1
+!i10b 1
+!s100 58=d9okNb<[9>MM;Hd@i62
+I[f_dJ19DD=LLMP[Q[BTO[1
+R2
+R0
+R3
+R4
+R5
+L0 300
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+vlab4_part2
+R1
+!i10b 1
+!s100 B^jWf4`GKh9G<k[Nik9b40
+I^bd?bR5^9B_KJP6X=lY]F0
+R2
+R0
+R3
+R4
+R5
+L0 1
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+vregister
+R1
+!i10b 1
+!s100 QmD2zS?JNE]d5:10k_j?C2
+I8jYOhgAB?a?ch2AJ7KJmQ0
+R2
+R0
+R3
+R4
+R5
+L0 286
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10

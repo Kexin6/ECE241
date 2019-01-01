@@ -1,0 +1,17 @@
+module lab5_part1 ();
+
+endmodule
+
+
+module TFlipFlop (input T, clock, clear_b, output reg Q);
+	always @ (posedge clock, negedge clear_b)
+		begin
+			if(clear_b == 0)
+				Q <= 0
+			else 
+				if (T == 0)
+					Q <= T
+				else
+					Q <= ~T
+		end
+endmodule

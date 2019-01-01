@@ -1,0 +1,110 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Users/Kexin Li/desktop/ece241Labs/lab6/part2
+vcontrol
+Z0 !s110 1540862510
+!i10b 1
+!s100 bYUD8R3hRCI]ahO21C_k^3
+IVBOjb:n`g6R6_=`Reb3^N1
+Z1 VDg1SIo80bB@j0V0VzS_@n1
+Z2 dC:/Users/Kexin Li/Desktop/ecE241Labs/lab6/part2
+Z3 w1540707212
+Z4 8lab6_part2.v
+Z5 Flab6_part2.v
+L0 99
+Z6 OV;L;10.5b;63
+r1
+!s85 0
+31
+Z7 !s108 1540862510.000000
+Z8 !s107 lab6_part2.v|
+Z9 !s90 -reportprogress|300|lab6_part2.v|
+!i113 1
+Z10 tCvgOpt 0
+vdatapath
+R0
+!i10b 1
+!s100 nE6XEKKVnNIR;^7VE`1db3
+I4AXfc1WQ8a^8@EGZEJAE42
+R1
+R2
+R3
+R4
+R5
+L0 232
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+vhex_decoder
+R0
+!i10b 1
+!s100 R8S67Nz22zN8nT3Qk66M61
+IF?6N0A[EWi]e`aj^0h_>M2
+R1
+R2
+R3
+R4
+R5
+L0 329
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+vlab6_part2
+R0
+!i10b 1
+!s100 LI>VcJXJ:25TQ_?hf3LVI1
+I@k[:SO4Ad[@3A77[E@@YK2
+R1
+R2
+R3
+R4
+R5
+L0 9
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
+vpart2
+R0
+!i10b 1
+!s100 R9VWiN;B]m8_N:kHUgA[61
+IA?3Jch9@Jg?H`[QUf_z@J2
+R1
+R2
+R3
+R4
+R5
+L0 45
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 1
+R10
