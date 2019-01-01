@@ -1,0 +1,318 @@
+// part3
+
+module Rhapsody
+	(
+		CLOCK_50,						//	On Board 50 MHz
+		// Your inputs and outputs here
+		SW,								// on Board switches
+		KEY,							// On Board Keys
+		LEDR,
+		//HEX0,HEX1,HEX2,HEX3,
+		// The ports below are for the VGA output.  Do not change.
+		VGA_CLK,   						//	VGA Clock
+		VGA_HS,							//	VGA H_SYNC
+		VGA_VS,							//	VGA V_SYNC
+		VGA_BLANK_N,					//	VGA BLANK
+		VGA_SYNC_N,						//	VGA SYNC
+		VGA_R,   						//	VGA Red[9:0]
+		VGA_G,	 						//	VGA Green[9:0]
+		VGA_B,   						//	VGA Blue[9:0]
+		TD_DATA,    			//	TV Decoder Data bus 8 bits
+		TD_HS,					//	TV Decoder H_SYNC
+		TD_VS,					//	TV Decoder V_SYNC
+		TD_RESET_N,				//	TV Decoder Reset
+		I2C_SCLK,
+		I2C_SDAT,
+		TD_CLK27
+	);
+
+	/* inout for camera module */
+	input	[3:0]	KEY;
+	input TD_CLK27;
+	input	[7:0]	TD_DATA;    			//	TV Decoder Data bus 8 bits
+	input			TD_HS;					//	TV Decoder H_SYNC
+	input			TD_VS;					//	TV Decoder V_SYNC
+	output		TD_RESET_N;				//	TV Decoder Reset
+	output		I2C_SCLK;
+	inout			I2C_SDAT;
+	//outputing the position of player
+	wire [9:0] camera_out;
+	wire [2:0] position;
+	assign position = camera_out[2:0];
+	wire [9:0] vga_r,vga_b,vga_g; wire vga_hs,vga_vs,vga_blank_n,vga_sync_n,vga_clk;
+	camera camera1(
+	.clk(CLOCK_50),
+	.clk_27(TD_CLK27),
+	.resetn(resetn),
+	.td_reset(KEY[3]),
+	.debug(camera_out),
+	.td_data(TD_DATA),
+	.td_hs(TD_HS),
+	.td_vs(TD_VS),
+	.td_reset_n(TD_RESET_N),
+	.i2c_sclk(I2C_SCLK),
+	.i2c_sdat(I2C_SDAT),
+ 	.VGA_r(vga_r),
+	.VGA_g(vga_g),
+	.VGA_b(vga_b),
+	.VGA_hs(vga_hs),
+	.VGA_vs(vga_vs),
+	.VGA_blank_n(vga_blank_n),
+	.VGA_sync_n(vga_sync_n),
+	.VGA_clk(vga_clk)
+	);
+	/*
+	output [6:0] HEX0,HEX1,HEX2,HEX3;
+	wire [3:0] first_digit,second_digit;
+	
+	hexDecode hex0(updated_score[3:0], HEX0[6:0]);
+	hexDecode hex1({2'b00,updated_score[5:4]},HEX1[6:0]);
+	hexDecode hex2(first_digit,HEX2[6:0]);
+	hexDecode hex3(second_digit,HEX3[6:0]);
+	*/
+	//score module
+	wire  [6:0] updated_score;
+	wire score_updated;
+	score score_update(
+	.clk(CLOCK_50),
+	.resetn(resetn),
+	.expected_position(3'b111),
+	.real_position(position),
+	.updated_score(updated_score),
+	.score_updated(score_updated)
+	); 
+	/*inout for vga display module */
+	
+	input			CLOCK_50;				//	50 MHz
+	// Declare your inputs and outputs here
+	input [9:0] SW;
+	output [9:0] LEDR;
+	assign LEDR[9:0] = camera_out;
+	//assign LEDR[9:3] = updated_score[6:0];
+	//assign LEDR[9:9] = score_updated;
+	// Do not change the following outputs
+	output			VGA_CLK;   				//	VGA Clock
+	output			VGA_HS;					//	VGA H_SYNC
+	output			VGA_VS;					//	VGA V_SYNC
+	output			VGA_BLANK_N;				//	VGA BLANK
+	output			VGA_SYNC_N;				//	VGA SYNC
+	output	[7:0]	VGA_R;   				//	VGA Red[7:0] Changed from 10 to 8-bit DAC
+	output	[7:0]	VGA_G;	 				//	VGA Green[7:0]
+	output	[7:0]	VGA_B;   				//	VGA Blue[7:0]
+
+	wire resetn;
+	assign resetn = KEY[0];
+
+	// Create the colour, x, y and writeEn wires that are inputs to the controller.
+
+	wire [8:0] colour;
+	wire [7:0] x;
+	wire [6:0] y;
+	wire writeEn;
+
+	// Create wires
+
+   //wire clearn = ~KEY[1];
+   //wire plot = ~KEY[2];
+	wire clock_60;
+
+	// wires connected btw control and datapath
+	wire [4:0] feedback_counter;
+	wire [6:0] feedback_counter_black_y, feedback_counter_title_y;
+	wire [7:0] feedback_counter_black_x, feedback_counter_title_x;
+	wire [7:0] feedback_x_counter;
+	wire [6:0] feedback_y_counter;
+	wire [6:0] feedback_y_counter2;
+	wire [6:0] feedback_y_counter3;
+	wire [5:0] feedback_counter_1,feedback_counter_2;
+	wire [7:0] feedback_counter_clear;
+	wire load_x, load_y;
+
+	wire is_update, is_update2, is_update3;
+	wire is_end, is_end2, is_end3;
+	wire colour_black, colour_black2, colour_black3;
+	wire direction_x_change;
+	wire direction_y_change;
+	wire clock_60_Hz;
+	wire [19:0]Qq;
+
+	//assign LEDR[6:0] = feedback_title_counter;
+	// assign LEDR[1] = direction_x_change;
+	// assign LEDR[2] = direction_y_change;
+	wire is_black, ld_title;
+	wire WE1, WE2, WE3, WE4;
+	wire [14:0] backAddress, titleAddress;
+	wire [8:0] color_q, color_first;
+	wire [3:0] leftAddress, middleAddress, rightAddress;
+	wire [8:0] test_color;
+	wire [8:0] left_color, middle_color, right_color;
+	//assign LEDR[3:0] = leftAddress;
+	wire update_1,update_2,updated_clear;
+	
+	mux choose(
+				.choice(SW[1:0]), 
+				.clock_50(CLOCK_50), 
+				.q(Qq)
+				);
+	counter_60 clock60(
+				.clock(CLOCK_50),
+			   .pulse(clock_60_Hz),
+				.q(Qq)
+				);
+
+	control c0(.clk(CLOCK_50),
+			   .slowerClk(clock_60_Hz),
+            .resetn(resetn),
+			   .counter(feedback_counter),
+			   .x_counter(feedback_x_counter),
+			   .y_counter(feedback_y_counter),
+				.y_counter2(feedback_y_counter2),
+				.y_counter3(feedback_y_counter3),
+				.counter_1(feedback_counter_1),
+				.counter_2(feedback_counter_2),
+				.counter_clear(feedback_counter_clear),
+				.counter_black_y(feedback_counter_black_y),
+				.counter_title_y(feedback_counter_title_y),
+				.counter_black_x(feedback_counter_black_x),
+				.counter_title_x(feedback_counter_title_x),
+            .ld_plot(WE1),
+				.ld_plot2(WE2),
+				.ld_plot3(WE3),
+			   .is_black(is_black),
+				.ld_title(ld_title),
+			   .is_update(is_update),
+				.is_update2(is_update2),
+				.is_update3(is_update3),
+				.score_updated(score_updated),
+			   .is_end(is_end),
+				.is_end2(is_end2),
+				.is_end3(is_end3),
+			   .colour_black(colour_black),
+				.colour_black2(colour_black2),
+				.colour_black3(colour_black3),
+				.update_1(update_1),
+				.update_2(update_2),
+				.updated_clear(updated_clear),
+				.ld_score(WE4),
+				.key1(KEY[1])
+			   //.debug(LEDR[9:0])
+            );
+
+    datapath d0(
+				.clk(CLOCK_50),
+            .resetn(resetn),
+           // .colour_in(SW[9:7]),
+			   .ld_plot(WE1),
+				.ld_plot2(WE2),
+				.ld_plot3(WE3),
+			   .is_black(is_black),
+				.ld_title(ld_title),
+			   .is_update(is_update),
+				.is_update2(is_update2),
+				.is_update3(is_update3),
+			   .is_end(is_end),
+				.is_end2(is_end2),
+				.is_end3(is_end3),
+			   .colour_black(colour_black),
+				.colour_black2(colour_black2),
+				.colour_black3(colour_black3),
+				.update_1(update_1),
+				.update_2(update_2),
+				.updated_clear(updated_clear),
+				.ld_score(WE4),
+            .x_out(x),
+            .y_out(y),
+			   .counter(feedback_counter),
+			   .counter_black_y(feedback_counter_black_y),
+				.counter_title_y(feedback_counter_title_y),
+				.counter_black_x(feedback_counter_black_x),
+				.counter_title_x(feedback_counter_title_x),
+			   .x_counter(feedback_x_counter),
+			   .y_counter(feedback_y_counter),
+				.y_counter2(feedback_y_counter2),
+				.y_counter3(feedback_y_counter3),
+				.counter_1(feedback_counter_1),
+				.counter_2(feedback_counter_2),
+				.counter_clear(feedback_counter_clear),
+            .colour(colour),
+				.backAddress(backAddress),
+				.color_q(color_q),
+				.leftAddress(leftAddress),
+				.middleAddress(middleAddress),
+				.rightAddress(rightAddress),
+				.left_color(left_color),
+				.right_color(right_color),
+				.middle_color(middle_color),
+				.score(updated_score),
+				.titleAddress(titleAddress),
+				.color_first(color_first),
+				//.first_digit(first_digit),
+				//.second_digit(second_digit)
+             );
+					
+				// background
+			background9 back(
+					.address(backAddress),
+					.clock(CLOCK_50),
+					.wren(0),
+					.q(color_q)
+				);
+			title first(
+				.address(titleAddress),
+				.clock(CLOCK_50),
+				.wren(0),
+				.q(color_first)
+			);
+				
+				// blocks
+				
+			left left0(
+					.address(leftAddress),
+					.clock(CLOCK_50),
+					.wren(0),
+					.q(left_color)
+				);
+				
+			middle middle0(
+					.address(middleAddress),
+					.clock(CLOCK_50),
+					.wren(0),
+					.q(middle_color)
+				);
+			right right0(
+					.address(rightAddress),
+					.clock(CLOCK_50),
+					.wren(0),
+					.q(right_color)
+				);
+					
+	// Create an Instance of a VGA controller - there can be only one!
+	// Define the number of colours as well as the initial background
+	// image file (.MIF) for the controller.
+	
+	assign writeEn = (ld_title || is_black || WE1 || WE2 || WE3 || WE4) ? 1'b1 : 1'b0;
+	//assign writeEn = WE1;
+	
+	vga_adapter VGA(
+			.resetn(resetn),
+			.clock(CLOCK_50),
+			.colour(colour),
+			.x(x),
+			//.x({1'b0,x}),
+			.y(y),
+			.plot(writeEn),
+			/* Signals for the DAC to drive the monitor. */
+			.VGA_R(VGA_R),
+			.VGA_G(VGA_G),
+			.VGA_B(VGA_B),
+			.VGA_HS(VGA_HS),
+			.VGA_VS(VGA_VS),
+			.VGA_BLANK(VGA_BLANK_N),
+			.VGA_SYNC(VGA_SYNC_N),
+			.VGA_CLK(VGA_CLK));
+		defparam VGA.RESOLUTION = "160x120";
+		defparam VGA.MONOCHROME = "FALSE";
+		defparam VGA.BITS_PER_COLOUR_CHANNEL = 3;
+		defparam VGA.BACKGROUND_IMAGE = "title.mif";
+
+endmodule

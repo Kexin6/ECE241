@@ -1,0 +1,19 @@
+
+
+C:/Users/Kath/Desktop/Rhapsody/game/vga_pll.v
+
+Nov 19 08PM:10:23>: Error in CNX file format.
+
+Error messages are listed in file
+C:/Users/Kath/Desktop/Rhapsody/game/vga_pll.cnxerr.
+
+Can't create the custom megafunction variation file(s)
+
+C:/Users/Kath/Desktop/Rhapsody/game/vga_pll.v
+
+Nov 19 08PM:12:18>: Error in CNX file format.
+
+Error messages are listed in file
+C:/Users/Kath/Desktop/Rhapsody/game/vga_pll.cnxerr.
+
+Can't create the custom megafunction variation file(s)

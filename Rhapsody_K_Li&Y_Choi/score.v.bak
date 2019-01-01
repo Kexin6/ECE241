@@ -1,0 +1,151 @@
+//compared expected position and real position and update score
+
+module score (
+	input clk, 
+	input resetn,
+	input [2:0] expected_position,
+	input [2:0] real_position,
+	input [6:0] current_score,//feed back of updated_score
+	output reg [6:0] updated_score,
+	output reg score_updated);
+
+	always@(posedge clk)
+	begin	
+		if (!resetn) begin
+		updated_score <= 7'b0;	
+		score_updated <= 1'b1;end
+		else if (expected_position == real_position)begin
+		updated_score <= current_score + 1'b1;	
+		score_updated <= 1'b1;end
+		else if (current_score == 7'b1100011)begin //score = decimal 99
+		updated_score <= current_score;
+		score_updated <= 1'b0;end
+	end
+	
+endmodule
+
+//deplay a binary number in decimal, and output to vga
+module bin_deci(
+	input clk, 
+	input resetn,
+	input go,
+	input score_updated,
+	input [6:0] score_binary,
+	output reg [8:0] color,
+	output reg [8:0]x,
+	output reg [7:0]y,
+	output reg writeEn 
+);
+
+	localparam zero = 64'b0001100000100100010000100100001001000010010000100010010000011000,
+				  one  = 64'b0001100000111000010110001001100000011000000110000001100011111111,
+				  two  = 64'b0011110001111110011001101100011000001100000110000111000011111111,
+				  three= 64'b0011110001100110010001100011110000000100000001100100011000111100,
+				  four = 64'b0001100000111000011010001100100011111111000010000000100000001000,
+				  five = 64'b0111111101000000010000000111110000000110000001100000011001111000,
+				  six  = 64'b0011111101000000010000000101110011111110110001101100011001111000,
+				  seven= 64'b1111111011111110000011000001100000110000011000001100000010000000, 
+				  eight= 64'b0000000000011000001001000010010000011000001001000010010000011000,
+				  nine = 64'b0001110000100100011001000011110000000100000001000100100000110000;
+
+	localparam S_WAIT = 3'b000,
+				  S_CLEAR = 3'b001,
+				  S_DIGIT_1 = 3'b010,
+				  S_DIGIT_2 = 3'b011;
+
+	reg [2:0] current_state, next_state;
+	reg [5:0] counter_1, counter_2;
+	reg [7:0] counter_clear;
+	wire [3:0] first_digit,second_digit;
+	reg [63:0] first_color, second_color;
+	assign first_digit = score_binary % 4'd10;
+	assign second_digit = (score_binary / 4'd10 ) % 4'd10;
+	
+	always@(*)
+	begin
+		if (first_digit == 4'b0) first_color = zero;
+		else if (first_digit == 4'b1) first_color = one;
+		else if (first_digit == 4'b10) first_color = two;
+		else if (first_digit == 4'b11) first_color = three;
+		else if (first_digit == 4'b100) first_color = four;
+		else if (first_digit == 4'b101) first_color = five;
+		else if (first_digit == 4'b110) first_color = six;
+		else if (first_digit == 4'b111) first_color = seven;
+		else if (first_digit == 4'b1000) first_color = eight;
+		else if (first_digit == 4'b1001) first_color = nine;
+		else first_color = zero;
+		if (second_digit == 4'b0) first_color = zero;
+		else if (second_digit == 4'b1) second_color = one;
+		else if (second_digit == 4'b10) second_color = two;
+		else if (second_digit == 4'b11) second_color = three;
+		else if (second_digit == 4'b100) second_color = four;
+		else if (second_digit == 4'b101) second_color = five;
+		else if (second_digit == 4'b110) second_color = six;
+		else if (second_digit == 4'b111) second_color = seven;
+		else if (second_digit == 4'b1000) second_color = eight;
+		else if (second_digit == 4'b1001) second_color = nine;
+		else second_color = zero;
+	end
+	
+	always@(*)
+	begin: state_table
+        	case (current_state)
+            	S_WAIT: begin next_state = (go&&score_updated) ? S_WAIT : S_CLEAR;end
+					S_CLEAR: begin next_state = (counter_clear == 8'b11100000) ? S_DIGIT_1:S_CLEAR;end
+					S_DIGIT_1: begin next_state = (counter_1 == 6'b111111)? S_DIGIT_2:S_DIGIT_1;end
+					S_DIGIT_2: begin next_state = (counter_2 == 6'b111111)? S_WAIT:S_DIGIT_2;end
+					default: next_state = S_WAIT;
+        	endcase
+	end
+
+reg update_1,update_2,updated_clear;
+	
+	always @(posedge clk)
+	begin: enable_signals
+		update_1 = 1'b0;
+		update_2 = 1'b0;
+		updated_clear = 1'b0;
+		writeEn = 1'b0;
+		case (current_state) 
+		S_CLEAR: begin updated_clear = 1'b1;writeEn = 1'b1;end
+		S_DIGIT_1: begin update_1 = 1'b1;writeEn = 1'b1;end
+		S_DIGIT_2: begin update_2 = 1'b1;writeEn = 1'b1;end
+		endcase
+	end // enable_signals
+//need to added color information	
+always@(posedge clk)
+	begin: state_FFs
+    	if(!resetn)begin
+        	current_state <= S_WAIT;
+			counter_1 <= 6'b0;
+			counter_2 <= 6'b0;
+			counter_clear <= 8'b0;
+			x <= 9'b0;
+			y <= 8'b0;end
+		else if (updated_clear == 1'b1)begin
+			x <= 7'd118 + counter_clear[4:0];
+			y <= 7'd100 + counter_clear[7:5];
+			color <= 9'b111111111; end //clear with white color
+		else if (update_1 == 1'b1) begin
+			current_state <= next_state;
+			x <= 7'd118 + counter_1[2:0];
+			y <= 7'd100 + counter_1[5:3];
+			counter_1 <= counter_1 + 1'b1;
+			color <= (first_color[counter_1])? 9'b000000000: 9'b111111111;end
+		else if (update_2 == 1'b1) begin
+			current_state <= next_state;
+			x <= 8'd128 + counter_2[2:0];
+			y <= 7'd100 + counter_2[5:3];
+			counter_1 <= counter_2 + 1'b1;
+			color <= (second_color[counter_2])? 9'b000000000: 9'b111111111;end
+		else begin
+			counter_1 <= counter_1;
+			counter_clear <= counter_clear;
+			x <= x;
+			y <= y;
+			counter_2 <= counter_2;
+			current_state <= next_state;
+			color <= 9'b111111111; end
+	end // state_FFs	
+	
+endmodule

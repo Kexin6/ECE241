@@ -1,0 +1,13 @@
+Info (10281): Verilog HDL Declaration information at Rhapsody.v(92): object "HEX0" differs only in case from object "hex0" in the same scope File: C:/Users/Kath/Desktop/Rhapsody_11.21/Rhapsody.v Line: 92
+Info (10281): Verilog HDL Declaration information at Rhapsody.v(92): object "HEX1" differs only in case from object "hex1" in the same scope File: C:/Users/Kath/Desktop/Rhapsody_11.21/Rhapsody.v Line: 92
+Info (10281): Verilog HDL Declaration information at Rhapsody.v(92): object "HEX2" differs only in case from object "hex2" in the same scope File: C:/Users/Kath/Desktop/Rhapsody_11.21/Rhapsody.v Line: 92
+Info (10281): Verilog HDL Declaration information at Rhapsody.v(92): object "HEX3" differs only in case from object "hex3" in the same scope File: C:/Users/Kath/Desktop/Rhapsody_11.21/Rhapsody.v Line: 92
+Info (10281): Verilog HDL Declaration information at Rhapsody.v(66): object "vga_clk" differs only in case from object "VGA_CLK" in the same scope File: C:/Users/Kath/Desktop/Rhapsody_11.21/Rhapsody.v Line: 66
+Info (10281): Verilog HDL Declaration information at Rhapsody.v(66): object "vga_hs" differs only in case from object "VGA_HS" in the same scope File: C:/Users/Kath/Desktop/Rhapsody_11.21/Rhapsody.v Line: 66
+Info (10281): Verilog HDL Declaration information at Rhapsody.v(66): object "vga_vs" differs only in case from object "VGA_VS" in the same scope File: C:/Users/Kath/Desktop/Rhapsody_11.21/Rhapsody.v Line: 66
+Info (10281): Verilog HDL Declaration information at Rhapsody.v(66): object "vga_blank_n" differs only in case from object "VGA_BLANK_N" in the same scope File: C:/Users/Kath/Desktop/Rhapsody_11.21/Rhapsody.v Line: 66
+Info (10281): Verilog HDL Declaration information at Rhapsody.v(66): object "vga_sync_n" differs only in case from object "VGA_SYNC_N" in the same scope File: C:/Users/Kath/Desktop/Rhapsody_11.21/Rhapsody.v Line: 66
+Info (10281): Verilog HDL Declaration information at Rhapsody.v(66): object "vga_r" differs only in case from object "VGA_R" in the same scope File: C:/Users/Kath/Desktop/Rhapsody_11.21/Rhapsody.v Line: 66
+Info (10281): Verilog HDL Declaration information at Rhapsody.v(66): object "vga_g" differs only in case from object "VGA_G" in the same scope File: C:/Users/Kath/Desktop/Rhapsody_11.21/Rhapsody.v Line: 66
+Info (10281): Verilog HDL Declaration information at Rhapsody.v(66): object "vga_b" differs only in case from object "VGA_B" in the same scope File: C:/Users/Kath/Desktop/Rhapsody_11.21/Rhapsody.v Line: 66
+Info (10281): Verilog HDL Declaration information at Rhapsody.v(903): object "q" differs only in case from object "Q" in the same scope File: C:/Users/Kath/Desktop/Rhapsody_11.21/Rhapsody.v Line: 903

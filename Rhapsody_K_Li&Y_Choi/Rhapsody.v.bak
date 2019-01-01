@@ -1,0 +1,645 @@
+// part3
+
+module Rhapsody
+	(
+		CLOCK_50,						//	On Board 50 MHz
+		// Your inputs and outputs here
+		SW,								// on Board switches
+		KEY,							// On Board Keys
+		LEDR,
+		// The ports below are for the VGA output.  Do not change.
+		VGA_CLK,   						//	VGA Clock
+		VGA_HS,							//	VGA H_SYNC
+		VGA_VS,							//	VGA V_SYNC
+		VGA_BLANK_N,					//	VGA BLANK
+		VGA_SYNC_N,						//	VGA SYNC
+		VGA_R,   						//	VGA Red[9:0]
+		VGA_G,	 						//	VGA Green[9:0]
+		VGA_B   						//	VGA Blue[9:0]
+	);
+
+	input			CLOCK_50;				//	50 MHz
+	input	[3:0]	KEY;
+	// Declare your inputs and outputs here
+	input [9:0] SW;
+	output [9:0] LEDR;
+	// Do not change the following outputs
+	output			VGA_CLK;   				//	VGA Clock
+	output			VGA_HS;					//	VGA H_SYNC
+	output			VGA_VS;					//	VGA V_SYNC
+	output			VGA_BLANK_N;				//	VGA BLANK
+	output			VGA_SYNC_N;				//	VGA SYNC
+	output	[7:0]	VGA_R;   				//	VGA Red[7:0] Changed from 10 to 8-bit DAC
+	output	[7:0]	VGA_G;	 				//	VGA Green[7:0]
+	output	[7:0]	VGA_B;   				//	VGA Blue[7:0]
+
+	wire resetn;
+	assign resetn = KEY[0];
+
+	// Create the colour, x, y and writeEn wires that are inputs to the controller.
+
+	wire [8:0] colour;
+	wire [6:0] x;
+	wire [6:0] y;
+	wire writeEn;
+
+	// Create wires
+
+   wire clearn = ~KEY[1];
+   //wire plot = ~KEY[2];
+	wire clock_60;
+
+	// wires connected btw control and datapath
+	wire [4:0] feedback_counter;
+	wire [16:0] feedback_counter_black;
+	wire [7:0] feedback_x_counter;
+	wire [6:0] feedback_y_counter;
+	wire [6:0] feedback_y_counter2;
+	wire [6:0] feedback_y_counter3;
+	wire load_x, load_y;
+	wire is_black;
+	wire is_update, is_update2, is_update3;
+	wire is_end, is_end2, is_end3;
+	wire colour_black, colour_black2, colour_black3;
+	wire direction_x_change;
+	wire direction_y_change;
+	wire clock_60_Hz;
+	wire [19:0]Qq;
+
+	//assign LEDR[6:0] = feedback_y_counter;
+	// assign LEDR[1] = direction_x_change;
+	// assign LEDR[2] = direction_y_change;
+	
+	wire WE1, WE2, WE3;
+	wire [14:0] backAddress;
+	wire [8:0] color_q;
+	wire [3:0] leftAddress, middleAddress, rightAddress;
+	wire [1:0] testAddress;
+	wire [8:0] test_color;
+	wire [8:0] left_color, middle_color, right_color;
+	assign LEDR[3:0] = leftAddress;
+	
+	
+	mux choose(
+				.choice(SW[1:0]), 
+				.clock_50(CLOCK_50), 
+				.q(Qq)
+				);
+	counter_60 clock60(
+				.clock(CLOCK_50),
+			   .pulse(clock_60_Hz),
+				.q(Qq)
+				);
+
+	control c0(.clk(CLOCK_50),
+			   .slowerClk(clock_60_Hz),
+            .resetn(resetn),
+            .Black(clearn),
+			   .counter(feedback_counter),
+			   .counter_black(feedback_counter_black),
+			   .x_counter(feedback_x_counter),
+			   .y_counter(feedback_y_counter),
+				.y_counter2(feedback_y_counter2),
+				.y_counter3(feedback_y_counter3),
+            .ld_plot(WE1),
+				.ld_plot2(WE2),
+				.ld_plot3(WE3),
+			   .is_black(is_black),
+			   .is_update(is_update),
+				.is_update2(is_update2),
+				.is_update3(is_update3),
+
+			   .is_end(is_end),
+				.is_end2(is_end2),
+				.is_end3(is_end3),
+			   .colour_black(colour_black),
+				.colour_black2(colour_black2),
+				.colour_black3(colour_black3),
+			   //.debug(LEDR[9:0])
+            );
+
+    datapath d0(
+				.clk(CLOCK_50),
+            .resetn(resetn),
+           // .colour_in(SW[9:7]),
+			   .ld_plot(WE1),
+				.ld_plot2(WE2),
+				.ld_plot3(WE3),
+			   .is_black(is_black),
+			   .is_update(is_update),
+				.is_update2(is_update2),
+				.is_update3(is_update3),
+			   .is_end(is_end),
+				.is_end2(is_end2),
+				.is_end3(is_end3),
+			   .colour_black(colour_black),
+				.colour_black2(colour_black2),
+				.colour_black3(colour_black3),
+
+            .x_out(x),
+            .y_out(y),
+			   .counter(feedback_counter),
+			   .counter_black(feedback_counter_black),
+			   .x_counter(feedback_x_counter),
+			   .y_counter(feedback_y_counter),
+				.y_counter2(feedback_y_counter2),
+				.y_counter3(feedback_y_counter3),
+            .colour(colour),
+				.backAddress(backAddress),
+				.color_q(color_q),
+				.leftAddress(leftAddress),
+				.middleAddress(middleAddress),
+				.rightAddress(rightAddress),
+				.left_color(left_color),
+				.right_color(right_color),
+				.middle_color(middle_color),
+				.testAddress(testAddress),
+				.test_color(test_color)
+             );
+					
+				// background
+			background9 back(
+					.address(backAddress),
+					.clock(CLOCK_50),
+					.wren(0),
+					.q(color_q)
+				);
+				
+				// blocks
+				
+			left left0(
+					.address(leftAddress),
+					.clock(CLOCK_50),
+					.wren(0),
+					.q(left_color)
+				);
+			/*testt test(
+					.address(testAddress),
+					.clock(CLOCK_50),
+					.wren(0),
+					.q(left_color)
+				);*/
+			middle middle0(
+					.address(middleAddress),
+					.clock(CLOCK_50),
+					.wren(0),
+					.q(middle_color)
+				);
+			right right0(
+					.address(rightAddress),
+					.clock(CLOCK_50),
+					.wren(0),
+					.q(right_color)
+				);
+					
+	// Create an Instance of a VGA controller - there can be only one!
+	// Define the number of colours as well as the initial background
+	// image file (.MIF) for the controller.
+	
+	assign writeEn = (WE1 || WE2 || WE3) ? 1'b1 : 1'b0;
+	//assign writeEn = WE1;
+	
+	vga_adapter VGA(
+			.resetn(resetn),
+			.clock(CLOCK_50),
+			.colour(colour),
+			.x(x),
+			//.x({1'b0,x}),
+			.y(y),
+			.plot(writeEn),
+			/* Signals for the DAC to drive the monitor. */
+			.VGA_R(VGA_R),
+			.VGA_G(VGA_G),
+			.VGA_B(VGA_B),
+			.VGA_HS(VGA_HS),
+			.VGA_VS(VGA_VS),
+			.VGA_BLANK(VGA_BLANK_N),
+			.VGA_SYNC(VGA_SYNC_N),
+			.VGA_CLK(VGA_CLK));
+		defparam VGA.RESOLUTION = "160x120";
+		defparam VGA.MONOCHROME = "FALSE";
+		defparam VGA.BITS_PER_COLOUR_CHANNEL = 3;
+		defparam VGA.BACKGROUND_IMAGE = "back.mif";
+
+endmodule
+
+module control(
+   input clk,
+	input slowerClk,
+   input resetn,
+   input Black,
+	input [4:0] counter, // counter for 4 x 4 block
+	input [16:0] counter_black, // counter for erase
+	input [7:0] x_counter,
+	input [6:0] y_counter,
+	input [6:0] y_counter2, 
+	input [6:0] y_counter3,
+
+   output reg ld_plot, ld_plot2, ld_plot3, is_black, is_update, is_update2, is_update3, is_end, is_end2, is_end3, colour_black,
+	colour_black2, colour_black3,// ld for counter
+	output [9:0] debug
+	);
+
+	reg [3:0] plot_current_state, plot_next_state;
+	reg [3:0] frameCounter;
+
+	// Go high once 15 frames
+	//assign debug[3:0] = plot_current_state;
+	assign debug[6:0] = counter;
+	assign debug[9] = ld_plot;
+	wire go;
+	assign go = (frameCounter == 4'b0000) ? 1'b1 : 1'b0;
+
+	localparam  
+			
+				S_PLOT_BEGIN 	 = 4'd0,
+				S_CLEAR         = 4'd1,
+				S_PLOT          = 4'd2,
+				S_BLACK         = 4'd3,
+				S_UPDATE        = 4'd4,
+				S_PLOT_END      = 4'd5,
+				S_PLOT_BEGIN2	 = 4'd6,
+				S_CLEAR2			 = 4'd7,
+				S_PLOT2			 = 4'd8,
+				S_UPDATE2		 = 4'd9,
+				S_PLOT_END2		 = 4'd10,
+				S_PLOT_BEGIN3	 = 4'd11,
+				S_CLEAR3			 = 4'd12,
+				S_PLOT3			 = 4'd13,
+				S_UPDATE3		 = 4'd14,
+				S_PLOT_END3		 = 4'd15;
+			
+				
+				
+
+	always@(*)
+    begin: plot_state_table
+            case (plot_current_state)
+				S_BLACK: begin
+					if (counter_black == 16'b1111111111111111)
+						plot_next_state = S_PLOT_BEGIN; // jump out of loop
+					else
+						plot_next_state = S_BLACK; // draw inside loop
+				end
+            S_PLOT_BEGIN: begin
+					if (~go) // loop in current state
+						plot_next_state = S_PLOT_BEGIN;
+					else
+						plot_next_state = S_CLEAR;
+				end
+				S_CLEAR: begin
+					if (counter == 5'b10000)
+						plot_next_state = S_UPDATE; // jump out of loop
+					else
+						plot_next_state = S_CLEAR; // draw inside loop
+				end
+				S_UPDATE: begin
+					plot_next_state = S_PLOT;
+				end
+				S_PLOT: begin
+					if (counter == 5'b10000)
+						plot_next_state = S_PLOT_END; // jump out of loop
+					else
+						plot_next_state = S_PLOT; // draw inside loop
+				end
+				S_PLOT_END: begin
+				//	if (y_counter == 7'd116) 
+						plot_next_state = S_PLOT_BEGIN2;
+				//	else
+				//		plot_next_state = S_PLOT_END;
+				end
+				S_PLOT_BEGIN2: begin
+					if (~go) // loop in current state
+						plot_next_state = S_PLOT_BEGIN2;
+				   else
+						plot_next_state = S_CLEAR2;
+				end
+				S_CLEAR2: begin
+					if (counter == 5'b10000)
+						plot_next_state = S_UPDATE2; // jump out of loop
+					else
+						plot_next_state = S_CLEAR2; // draw inside loop
+				end
+				S_UPDATE2: begin
+					plot_next_state = S_PLOT2;
+				end
+				S_PLOT2: begin
+					if (counter == 5'b10000)
+						plot_next_state = S_PLOT_END2; // jump out of loop
+					else
+						plot_next_state = S_PLOT2; // draw inside loop
+				end
+				S_PLOT_END2: 
+				//	if (y_counter == 7'd116) 
+						plot_next_state = S_PLOT_BEGIN3;
+				//	else
+				//		plot_next_state = S_PLOT_END2;
+				S_PLOT_BEGIN3: begin
+					if (~go) // loop in current state
+						plot_next_state = S_PLOT_BEGIN3;
+					else
+						plot_next_state = S_CLEAR3;
+				end
+				S_CLEAR3: begin
+					if (counter == 5'b10000)
+						plot_next_state = S_UPDATE3; // jump out of loop
+					else
+						plot_next_state = S_CLEAR3; // draw inside loop
+				end
+				S_UPDATE3: begin
+					plot_next_state = S_PLOT3;
+				end
+				S_PLOT3: begin
+					if (counter == 5'b10000)
+						plot_next_state = S_PLOT_END3; // jump out of loop
+					else
+						plot_next_state = S_PLOT3; // draw inside loop
+				end
+				S_PLOT_END3:
+				//	if (y_counter == 7'd116) 
+						plot_next_state = S_PLOT_BEGIN;
+				//	else
+				//		plot_next_state = S_PLOT_END3;
+				
+            default:     plot_next_state = S_BLACK;
+        endcase
+    end // plot_state_table
+
+    // Output logic aka all of our datapath control signals
+    always @(*)
+    begin: enable_signals
+        // By default make all our signals 0 to avoid latches.
+        // This is a different style from using a default statement.
+        // It makes the code easier to read.  If you add other out
+        // signals be sure to assign a default value for them here.
+		ld_plot = 1'b0;
+		ld_plot2 = 1'b0;
+		ld_plot3 = 1'b0;
+		is_black = 1'b0;
+		is_update = 1'b0;
+		is_update2 = 1'b0;
+		is_update3 = 1'b0;
+		is_end = 1'b0;
+		is_end2 = 1'b0;
+		is_end3 = 1'b0;
+		colour_black = 1'b0;
+		colour_black2 = 1'b0;
+		colour_black3 = 1'b0;
+		
+		case (plot_current_state)
+			S_BLACK: begin
+				ld_plot = 1'b1;
+				ld_plot2 = 1'b1;
+				ld_plot3 = 1'b1;
+				is_black = 1'b1;
+			end
+			S_PLOT: begin
+				ld_plot = 1'b1;
+			end
+			S_PLOT2: begin
+				ld_plot2 = 1'b1;
+			end
+			S_PLOT3: begin
+				ld_plot3 = 1'b1;
+			end
+			S_CLEAR: begin
+				ld_plot = 1'b1;
+				colour_black = 1'b1;
+			end
+			S_CLEAR2: begin
+				ld_plot2 = 1'b1;
+				colour_black2 = 1'b1;
+			end
+			S_CLEAR3: begin
+				ld_plot3 = 1'b1;
+				colour_black3 = 1'b1;
+			end
+			S_UPDATE: begin
+				is_update = 1'b1;
+			end
+			S_UPDATE2: begin
+				is_update2 = 1'b1;
+			end
+			S_UPDATE3: begin
+				is_update3 = 1'b1;
+			end
+			S_PLOT_END: begin
+				is_end = 1'b1;
+			end
+			S_PLOT_END2: begin
+				is_end2 = 1'b1;
+			end
+			S_PLOT_END3: begin
+				is_end3 = 1'b1;
+			end
+			//default:
+				//is_black = 1'b0;
+        // default:    // don't need default since we already made sure all of our outputs were assigned a value at the start of the always block
+        endcase
+    end // enable_signals
+
+    // current_state registers + frame counter -> / 15frames
+    always@(posedge clk)
+    begin: state_FFs
+        if(!resetn) begin
+			frameCounter <= 4'd0; // 15 - 1
+			plot_current_state <= S_BLACK;
+		end
+        else begin
+			// loop for frameCounter, if clock_60_Hz is high
+			if (slowerClk == 1) begin
+				if (frameCounter == 4'd14) begin
+					frameCounter <= 4'd0;
+				end
+				else begin
+					frameCounter <= frameCounter + 1'b1;
+				end
+			end
+			else begin
+				if (frameCounter == 4'd0)
+					frameCounter <= frameCounter + 1'b1;
+			end
+			plot_current_state <= plot_next_state;
+		end
+    end // state_FFS
+
+endmodule
+
+module datapath(
+	input clk,
+	input resetn,
+	//input [2:0] colour_in,
+	input ld_plot, ld_plot2, ld_plot3, is_black, is_update, is_update2, is_update3, 
+	is_end, is_end2, is_end3, colour_black, colour_black2, colour_black3,
+	input [8:0] color_q,left_color, right_color, middle_color,
+	input [8:0] test_color,
+	output reg [1:0] testAddress,
+	output reg [6:0] x_out,
+	output reg [6:0] y_out,
+	output reg [4:0] counter,
+	output reg [16:0] counter_black,
+	output reg [7:0] x_counter, // --> 160 /255
+	output reg [6:0] y_counter, // --> 120 /127
+	output reg [6:0] y_counter2,
+	output reg [6:0] y_counter3,
+	output [8:0] colour, 
+	output reg [14:0] backAddress,
+	output reg [3:0] leftAddress, middleAddress, rightAddress
+    );
+
+    // Registers x,y with respective input logic
+	//reg [5:0] datareg_x;
+	//reg [5:0] datareg_y;
+	reg [8:0] colour_reg;
+
+	// input registers
+	assign colour = colour_reg;
+
+    always@(posedge clk) begin
+        if(~resetn) begin
+			//datareg_x <= 6'b0;
+			//datareg_y <= 6'b0;
+			x_out <= 7'd0;
+			y_out <= 7'd0;
+         counter <= 5'd0;
+         counter_black <= 16'd0;
+			x_counter <= 8'b1;
+			y_counter <= 7'b1;
+			y_counter2 <= 7'b1;
+			y_counter3 <= 7'b1;
+			leftAddress <= 4'b0;
+			middleAddress <= 4'b0;
+			rightAddress <= 4'b0;
+			
+        end
+        else begin
+			if(ld_plot) begin
+				counter <= counter + 1'b1;
+				x_out <= 6'd32 + counter[1:0];
+				y_out <= y_counter + counter[3:2];
+				leftAddress <= leftAddress + 1'b1;
+				colour_reg <= left_color;
+				
+				//testAddress <= testAddress + 1'b1;
+				//colour_reg <= test_color;
+				end
+			end
+			if(ld_plot2) begin
+				counter <= counter + 1'b1;
+				x_out <= 7'd80 + counter[1:0];
+				y_out <= y_counter2 + counter[3:2];
+				middleAddress <= middleAddress + 1'b1;
+				colour_reg <= middle_color;
+				//testAddress <= testAddress + 1'b1;
+				//colour_reg <= test_color;
+			end
+			if(ld_plot3) begin
+				counter <= counter + 1'b1;
+				x_out <= 7'd120 + counter[1:0];
+				y_out <= y_counter3 + counter[3:2];
+				rightAddress <= rightAddress + 1'b1;
+				colour_reg <= right_color;
+				//testAddress <= testAddress + 1'b1;
+				//colour_reg <= test_color;
+			end
+			if(colour_black) begin
+				counter <= counter + 1'b1;
+				x_out <= 6'd32 + counter[1:0];
+				y_out <= y_counter + counter[3:2];
+				colour_reg <= 9'b111111111;
+			end
+			if(colour_black2) begin
+				counter <= counter + 1'b1;
+				x_out <= 7'd80 + counter[1:0];
+				y_out <= y_counter2 + counter[3:2];
+				colour_reg <= 9'b111111111;
+			end
+			if(colour_black3) begin
+				counter <= counter + 1'b1;
+				x_out <= 7'd120 + counter[1:0];
+				y_out <= y_counter3 + counter[3:2];
+				colour_reg <= 9'b111111111;
+			end
+			if (is_black) begin
+				counter_black <= counter_black + 1'b1;
+				backAddress <= backAddress + 1'b1;
+				colour_reg <= color_q;
+			end
+			if (is_update) begin
+				if(y_counter == 7'd116) 
+					y_counter <= 7'b0000000;
+				else
+					y_counter <= y_counter + 3'b111;
+			end
+			if (is_update2) begin
+				if(y_counter2 == 7'd116) 
+					y_counter2 <= 7'b0000000;
+				else
+					y_counter2 <= y_counter2 + 3'b111;
+			end
+			if (is_update3) begin
+				if(y_counter3 == 7'd116) 
+					y_counter3 <= 7'b0000000;
+				else
+					y_counter3 <= y_counter3 + 3'b111;
+			end
+			
+			if (is_end) begin
+				counter <= 5'b0;
+				leftAddress <= 4'b0;
+				middleAddress <= 4'b0;
+				rightAddress <= 4'b0;
+				
+			end
+			if (is_end2) begin
+				counter <= 5'b0;
+				leftAddress <= 4'b0;
+				middleAddress <= 4'b0;
+				rightAddress <= 4'b0;
+			end
+			if (is_end3) begin
+				counter <= 5'b0;
+				leftAddress <= 4'b0;
+				middleAddress <= 4'b0;
+				rightAddress <= 4'b0;
+			end
+        end
+    
+
+endmodule
+
+module counter_60(clock, q, Q, pulse);
+	input clock;
+	input [19:0] q;
+	output reg pulse;
+	output reg [19:0] Q;
+
+	always@(posedge clock)
+	begin
+		if (Q == 20'd0)
+		begin
+			Q <= q;
+			
+			pulse <= 1'b1;
+		end
+		else
+		begin
+			Q <= Q - 1'b1;
+			pulse <= 1'b0;
+		end
+	end
+endmodule
+
+module mux (input [1:0] choice, clock_50, output reg [19:0] q);
+	
+	always @(*)
+	begin
+		case (choice)
+			2'b00: q = 20'd833332;
+			2'b01: q = 20'd416665;
+			2'b10: q = 20'd208332;
+			2'b11: q = 20'd104165;
+			default: q = 20'b0;
+		endcase			
+	end
+endmodule 

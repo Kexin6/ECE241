@@ -1,0 +1,127 @@
+module check_position (
+input clk, 
+input resetn, 
+input [8:0] vga_x,
+input [7:0] vga_y,
+input [4:0] color, 
+output[2:0] out);
+
+
+/*
+always @ (posedge clk)
+begin
+
+ if (!resetn)
+ led[2:0] <= 3'b000;
+ else
+ begin
+ if (vga_y > 8'b00010000 && vga_y < 8'b00010100 && vga_x > 9'b000000000 && vga_x < 9'b001010000 && color > 4'b1100)
+ led[2:0] <= 3'b100;
+ else if (vga_y > 8'b00010000 && vga_y < 8'b00010100 && vga_x > 9'b001010000 && vga_x < 9'b010100000 && color > 4'b1100)
+ led[2:0] <=  3'b010;
+ else if (vga_y > 8'b00010000 && vga_y < 8'b00010100 && vga_x > 9'b010100000 && vga_x < 9'b101000000 && color > 4'b1100)
+ led[2:0] <= 3'b001;
+ else
+ led[2:0] <= 3'b000;
+ end
+end
+*/
+reg [2:0]led;
+assign out[2:0] = led[2:0];
+reg [1:0] counter;
+reg [2:0] current_state,next_state; 
+//assign out[4:3] = counter[1:0];
+//fsm implementation control path
+localparam S_WAIT = 3'b000,
+			  S_BEFORE_CHECK = 3'b001,//reset led to 3'b000
+           S_CHECK_1 = 3'b010,
+           S_CHECK_2 = 3'b011,
+			  S_CHECK_3 = 3'b100;
+
+
+always@(*)
+	begin: state_table
+        	case (current_state)
+            	S_WAIT: begin 
+					next_state = (vga_y == 8'b00010000)? S_BEFORE_CHECK : S_WAIT;
+					end
+					S_BEFORE_CHECK: next_state = S_CHECK_1;
+					S_CHECK_1:begin
+					next_state = (vga_x > 9'b000000000 && vga_x < 9'b001010000) ? S_CHECK_1: S_CHECK_2;
+					end
+					S_CHECK_2:begin
+					next_state = (vga_x > 9'b001010000 && vga_x < 9'b010100000) ? S_CHECK_2: S_CHECK_3;
+					end
+					S_CHECK_3:begin
+					next_state = (vga_x > 9'b010100000 && vga_x < 9'b101000000) ? S_CHECK_3: ((counter == 2'b11)? S_WAIT: S_CHECK_1);
+					end
+					default: begin next_state = S_WAIT; end
+        	endcase
+	end
+
+reg hold, update_0,update_1,update_2,reset;
+reg iter;
+ //when hold, hold led previous value, when reset, reset led to 3'b000
+	
+always @(posedge clk)
+begin: enable_signals
+	hold= 1'b0;
+	update_0 = 1'b0;
+	update_1 = 1'b0;
+	update_2 = 1'b0;
+	reset = 1'b0;
+	iter = 1'b0;
+	case (current_state)
+	S_WAIT: hold = 1'b1; 
+	S_BEFORE_CHECK:reset = 1'b1;
+	S_CHECK_1:begin 
+	hold = (led[2] == 1'b1) ? 1'b1: 1'b0;
+	update_0 = (led[2] == 1'b1) ? 1'b0: 1'b1; end 
+	// hold only when previously have a 1'b1 in that box
+	S_CHECK_2:begin 
+	hold = (led[1] == 1'b1) ? 1'b1: 1'b0;
+	update_1 = (led[1] == 1'b1) ? 1'b0: 1'b1; end 
+	S_CHECK_3:begin 
+	hold = (led[0] == 1'b1) ? 1'b1: 1'b0;
+	update_2 = (led[0] == 1'b1) ? 1'b0: 1'b1; 
+	iter = 1'b1;end 
+	endcase
+end // enable_signals
+
+always@(posedge clk)
+	begin: state_FFs
+    	if(!resetn)begin
+        	current_state <= S_WAIT;
+			counter <= 2'b00;end
+		else if (iter == 1'b1) begin
+			current_state <= next_state;
+			counter = counter + 1'b1;end
+		else begin
+			counter <= counter;
+			current_state <= next_state;end
+	end // state_FFS
+	
+//fsm datapath	
+
+always@(posedge clk) begin
+	if(!resetn) begin
+		led <= 3'b000;end
+	else if (reset) begin
+		led <= 3'b000;end
+	else if (hold) begin
+		led <= led; end
+	else if (update_0) begin
+		led[2] <= (color > 5'b10000);
+		led[1:0] <= led[1:0];end
+	else if (update_1) begin
+		led[1] <= (color > 5'b10000);
+		led[2] <= led[2];
+		led[0] <= led[0];end
+	else if (update_2) begin
+		led[0] <= (color > 5'b10000);
+		led[2:1] <= led[2:1];end
+	else
+		led[2:0] <= 3'b000;
+end
+
+endmodule

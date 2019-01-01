@@ -1,0 +1,5 @@
+module song (
+	input clk,
+	input	resetn );
+	
+endmodule
